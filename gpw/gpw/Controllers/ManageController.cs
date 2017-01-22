@@ -320,6 +320,7 @@ namespace gpw.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+        // 1. Khởi tạo doành họ, tên dòng họ
         // 2. Update thông tin thành viên
         public ActionResult uptv()
         {
@@ -327,7 +328,8 @@ namespace gpw.Controllers
         }
 
 
-        // 1. Khởi tạo doành họ, tên dòng họ
+        // 
+
 
         protected override void Dispose(bool disposing)
         {
