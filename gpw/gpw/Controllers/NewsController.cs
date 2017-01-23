@@ -149,6 +149,7 @@ namespace gpw.Controllers
             baiviet.ngay_tao = DateTime.Now;
             baiviet.quyen_hang = news.quyen_hang ?? null;
             baiviet.trang_thai = news.trang_thai ?? null;
+            baiviet.new_des = news.new_des ?? null;
             var userId = User.Identity.GetUserId();
             baiviet.user_id = userId;
             db.news.Add(baiviet);
@@ -213,6 +214,7 @@ namespace gpw.Controllers
             baiviet.ngay_tao = DateTime.Now;
             baiviet.quyen_hang = news.quyen_hang ?? null;
             baiviet.trang_thai = news.trang_thai ?? null;
+            baiviet.new_des = news.new_des ?? null;
             var userId = User.Identity.GetUserId();
             baiviet.user_id = userId;            
             TempData["update"] = "Cập nhật bài viết thành công.";
@@ -304,6 +306,36 @@ namespace gpw.Controllers
                 configs.SaveTolog(ex.ToString());
             }
             return Json(new { Message = fName }, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public ActionResult tin(string url, int? pg)
+        {
+            if (url == null || url == "")
+	        {
+                 return RedirectToAction("Index", "Home");
+	        }
+            var cat = (from c in db.cats where c.cat_url == url select c).FirstOrDefault();
+            if (cat == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.danhmuctin = cat.cat_name;
+
+            int pageSize = 25;
+            if (pg == null) pg = 1;
+            int pageNumber = (pg ?? 1);
+            ViewBag.pg = pg;
+
+            var data = (from q in db.news where q.cat_id == cat.id select q);
+            if (data == null)
+            {
+                return View(data);
+            }
+
+            data = data.OrderBy(x => x.id);
+
+            return View(data.ToPagedList(pageNumber, pageSize));
         }
 
     }

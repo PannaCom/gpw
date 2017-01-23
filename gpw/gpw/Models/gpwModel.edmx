@@ -52,6 +52,7 @@
           <Property Name="trang_thai" Type="int" />
           <Property Name="isHot" Type="tinyint" />
           <Property Name="ngay_tao" Type="datetime" />
+          <Property Name="new_des" Type="nvarchar" MaxLength="505" />
         </EntityType>
         <EntityType Name="thong_tin_user">
           <Key>
@@ -92,9 +93,9 @@
           <EntitySet Name="cats" EntityType="gpwModel.cat" />
           <EntitySet Name="friends" EntityType="gpwModel.friend" />
           <EntitySet Name="thong_tin_user" EntityType="gpwModel.thong_tin_user" />
-          <EntitySet Name="news" EntityType="gpwModel.news" />
           <EntitySet Name="hoc_van" EntityType="gpwModel.hoc_van" />
           <EntitySet Name="jobs" EntityType="gpwModel.job" />
+          <EntitySet Name="news" EntityType="gpwModel.news" />
         </EntityContainer>
         <EntityType Name="cat">
           <Key>
@@ -137,6 +138,20 @@
           <Property Name="lat" Type="Double" />
           <Property Name="cq_ctac" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="hoc_van">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_truong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="job">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nghe_nghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="news">
           <Key>
             <PropertyRef Name="id" />
@@ -152,20 +167,7 @@
           <Property Name="trang_thai" Type="Int32" />
           <Property Name="isHot" Type="Byte" />
           <Property Name="ngay_tao" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="hoc_van">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ten_truong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="job">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nghe_nghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="new_des" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -217,23 +219,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="news">
-            <EntityTypeMapping TypeName="gpwModel.news">
-              <MappingFragment StoreEntitySet="news">
-                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
-                <ScalarProperty Name="isHot" ColumnName="isHot" />
-                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
-                <ScalarProperty Name="quyen_hang" ColumnName="quyen_hang" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
-                <ScalarProperty Name="new_img" ColumnName="new_img" />
-                <ScalarProperty Name="new_flug" ColumnName="new_flug" />
-                <ScalarProperty Name="new_content" ColumnName="new_content" />
-                <ScalarProperty Name="new_title" ColumnName="new_title" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="hoc_van">
             <EntityTypeMapping TypeName="gpwModel.hoc_van">
               <MappingFragment StoreEntitySet="hoc_van">
@@ -246,6 +231,24 @@
             <EntityTypeMapping TypeName="gpwModel.job">
               <MappingFragment StoreEntitySet="job">
                 <ScalarProperty Name="nghe_nghiep" ColumnName="nghe_nghiep" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="gpwModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="new_des" ColumnName="new_des" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="isHot" ColumnName="isHot" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+                <ScalarProperty Name="quyen_hang" ColumnName="quyen_hang" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="new_img" ColumnName="new_img" />
+                <ScalarProperty Name="new_flug" ColumnName="new_flug" />
+                <ScalarProperty Name="new_content" ColumnName="new_content" />
+                <ScalarProperty Name="new_title" ColumnName="new_title" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

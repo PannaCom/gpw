@@ -10,28 +10,42 @@
 </head>
 <body>
 
-    
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <header>
         <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="~/images/thumbnail_gia-pha.jpg" class="img-responsive" />
+                </div>
+            </div>
+        </div>        
+    </header>
+
+    <div class="container">
+        <nav class="navbar navbar-default">
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="#">Gia phả</a></li>
+                    <li><a href="/News/tin/tin-hop-ho">Tin họp họ</a></li>
+                    <li><a href="/News/tin/tin-hoi-he">Tin hội hè</a></li>
+                    <li><a href="/News/tin/doanh-nghiep-dia-phuong">Doanh nghiệp địa phương</a></li>
+                    <li>@Html.ActionLink("Liên hệ", "Contact", "Home")</li>
+                    @Html.Partial("_LoginPartial")
                 </ul>
-                @Html.Partial("_LoginPartial")
+
             </div>
-        </div>
+        </nav>
     </div>
+   
+
     <div class="container body-content">
         @RenderBody()
         <hr />

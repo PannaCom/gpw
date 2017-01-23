@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0;
     padding-bottom: 20px;
 }
 
@@ -21,4 +21,108 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.blog-section {
+  margin: 15px 0;
+}
+
+.blog-section .blog-section-headline {
+  background: #e8500e;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  padding: 8px 10px;
+  margin: 0;
+  color: #f4e932;
+}
+
+.blog-section .blog-section-headline a {
+  color: #f4e932;
+}
+
+.blog-section .blog-section-headline a:hover {
+  text-decoration: none;
+}
+
+.blog-section .hotnews {
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.blog-section .hotnews li {
+  border-bottom: 1px solid #eee;
+}
+
+.blog-section .hotnews li:last-child {
+  border: none;
+}
+
+.blog-section .hotnews li a {
+  color: #333;
+  padding-left: 10px;
+}
+
+.blog-section .hotnews li a:hover {
+  color: #e8500e;
+}
+
+.blog-section .hotnews-wrapper {
+  border: 1px solid #eee;
+}
+
+.carousel-item a {
+  color: #e8500e;
+  font-size: 18px;
+}
+
+.carousel-item a:hover {
+  text-decoration: none;
+}
+
+.carousel-item img {
+  width: 100%;
+}
+
+.carousel-item .carousel-title {
+  margin: 10px 0;
+  /*white-space: nowrap;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  text-align: justify;
+  height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-wrapper {
+  background: #fbfbfb;
+  border: 1px solid #eee;
+}
+
+.post-description {
+  text-align: justify;
+  height: 9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.media-post-description {
+  text-align: justify;
+  height: 4.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-title {
+  margin: 10px 0;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1.1em;
 }

@@ -25,5 +25,6 @@ namespace gpw.Models
         public Nullable<int> trang_thai { get; set; }
         public Nullable<byte> isHot { get; set; }
         public Nullable<System.DateTime> ngay_tao { get; set; }
+        public string new_des { get; set; }
     }
 }
