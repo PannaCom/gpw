@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using gpw.Models;
+using System.IO;
+using gpw.helpers;
+using Newtonsoft.Json;
 
 namespace gpw.Controllers
 {
@@ -15,6 +18,8 @@ namespace gpw.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        private gpwEntities db = new gpwEntities();
 
         public ManageController()
         {
@@ -52,28 +57,66 @@ namespace gpw.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public ActionResult Index()
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
+            //ViewBag.StatusMessage =
+            //    message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+            //    : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+            //    : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+            //    : message == ManageMessageId.Error ? "An error has occurred."
+            //    : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+            //    : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+            //    : "";
 
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
-            {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
-            return View(model);
+            var userInfo = db.thong_tin_user.Where(x => x.user_id == userId).FirstOrDefault();
+
+            //var model = new IndexViewModel
+            //{
+            //    HasPassword = HasPassword(),
+            //    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+            //    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+            //    Logins = await UserManager.GetLoginsAsync(userId),
+            //    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+            //};
+            return View(userInfo);
         }
+
+        [Authorize]
+        public string getHocVan(string keyword)
+        {
+            if (keyword == null) keyword = "";
+            var p = (from q in db.hoc_van where q.ten_truong.Contains(keyword) orderby q.ten_truong ascending select q.ten_truong).ToList().Distinct();
+            return JsonConvert.SerializeObject(p);
+        }
+
+        [Authorize]
+        public string getNgheNghiep(string keyword)
+        {
+            if (keyword == null) keyword = "";
+            var p = (from q in db.jobs where q.nghe_nghiep.Contains(keyword) orderby q.nghe_nghiep ascending select q.nghe_nghiep).ToList().Distinct();
+            return JsonConvert.SerializeObject(p);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult CapNhatThongTin(thong_tin_user model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["error"] = "Vui lòng kiểm tra lại các trường";
+                return RedirectToAction("Index");
+            }
+            var userId = User.Identity.GetUserId();
+
+            string sql = "update thong_tin_user set ho_ten = N'" + model.ho_ten + "', biet_danh = N'" + model.biet_danh + "', gioi_tinh = N'" + model.gioi_tinh + "', hoc_van = N'" + model.hoc_van + "', dia_chi = N'" + model.dia_chi + "', ngay_sinh = '" + model.ngay_sinh.ToString() + "', nghe_nghiep = N'" + model.nghe_nghiep + "', trang_thai = '1', quyen_han = '" + model.quyen_han + "', ngay_tao = '" + DateTime.Now + "', hinh_anh = '" + model.hinh_anh + "', cq_ctac = N'" + model.cq_ctac + "', lon = '" + model.lon + "', lat = '" + model.lat + "', so_cmt = '"+ model.so_cmt +"' where user_id = '" + userId + "'";
+
+            var updateInfo = db.Database.ExecuteSqlCommand(sql);
+            TempData["update"] = "Cập nhật thành công";
+            return RedirectToAction("Index");
+        }
+
+
 
         //
         // POST: /Manage/RemoveLogin
@@ -327,6 +370,55 @@ namespace gpw.Controllers
             return View();
         }
 
+        public ActionResult uploadimg()
+        {
+            var fName = "";
+            try
+            {
+                foreach (string fileName in Request.Files)
+                {
+                    HttpPostedFileBase file = Request.Files[fileName];
+                    //Save file content goes here
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var originalDirectory = new DirectoryInfo(string.Format("{0}images\\users", Server.MapPath(@"\")));
+                        string strDay = DateTime.Now.ToString("yyyyMM");
+                        string pathString = System.IO.Path.Combine(originalDirectory.ToString(), strDay);
+
+                        var _fileName = Guid.NewGuid().ToString("N") + ".jpg";
+
+                        bool isExists = System.IO.Directory.Exists(pathString);
+
+                        if (!isExists)
+                            System.IO.Directory.CreateDirectory(pathString);
+
+                        var path = string.Format("{0}\\{1}", pathString, _fileName);
+                        //System.Drawing.Image bm = System.Drawing.Image.FromStream(file.InputStream);
+                        // Thay đổi kích thước ảnh
+                        //bm = ResizeBitmap((Bitmap)bm, 100, 100); /// new width, height
+                        //// Giảm dung lượng ảnh trước khi lưu
+                        //ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+                        //ImageCodecInfo ici = null;
+                        //foreach (ImageCodecInfo codec in codecs)
+                        //{
+                        //    if (codec.MimeType == "image/jpeg")
+                        //        ici = codec;
+                        //}
+                        //EncoderParameters ep = new EncoderParameters();
+                        //ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)80);
+                        //bm.Save(path, ici, ep);
+                        //bm.Save(path);
+                        file.SaveAs(path);
+                        fName = "/images/users/" + strDay + "/" + _fileName;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+            return Json(new { Message = fName }, JsonRequestBehavior.AllowGet);
+        }
 
         // 
 

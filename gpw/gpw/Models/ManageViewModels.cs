@@ -83,4 +83,13 @@ namespace gpw.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class ListUser {
+        public string id { get; set; }
+        public string ho_ten { get; set; }
+        public string dia_chi { get; set; }
+        public string hinh_anh { get; set; }
+        public string email { get; set; }
+        public string phone_number { get; set; }
+    }
 }

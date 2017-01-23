@@ -1,6 +1,6 @@
 ﻿@model gpw.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Đăng ký thành viên";
+    ViewBag.Title = "Đăng ký thành viên mạng xã hội gia phả";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -8,19 +8,24 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
+        @Html.LabelFor(m => m.ho_ten, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ho_ten, new { @class = "form-control", placeholder = "Họ tên thành viên" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Vui lòng nhập chính xác địa chỉ email" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Mật khẩu đăng nhập thành viên" })
         </div>
     </div>
     <div class="form-group">
@@ -29,9 +34,19 @@
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <label class="checkbox">
+                <input type="checkbox" checked="checked" class="checkbox" /> 
+                Đồng ý điều khoản xác nhận đăng ký thành viên.
+            </label>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Đăng ký ngay" />
         </div>
     </div>
 }
