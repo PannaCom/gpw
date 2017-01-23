@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using gpw.Models;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
 namespace gpw.Controllers
 {
@@ -57,6 +60,37 @@ namespace gpw.Controllers
         {
             var profile = db.thong_tin_user.Where(x => x.user_id == id).Select(x=>x).FirstOrDefault();
             return View(profile);
+        }
+
+        public ActionResult addfriend(string id)
+        {
+            
+            ViewBag.userId = id;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult addfriend(string userId, int quanhe)
+        {
+            int dosau = 0;
+            if (quanhe == 1) { dosau = 4; }
+            if (quanhe == 2) { dosau = 3; }
+            if (quanhe == 3 || quanhe == 4 || quanhe == 5) { dosau = 2; }
+            if (quanhe == 6 || quanhe == 7) { dosau = 1; }
+
+            var userId2= User.Identity.GetUserId();
+
+            friend NewFriend = new friend();
+            NewFriend.user1 = userId2;
+            NewFriend.user2 = userId;
+            NewFriend.quan_he = quanhe;
+            NewFriend.do_sau = dosau;
+            db.friends.Add(NewFriend);
+            db.SaveChanges();
+
+
+            return RedirectToAction("profile");
         }
     }
 }
