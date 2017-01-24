@@ -2,27 +2,66 @@
     ViewBag.Title = "Home Page";
 }
 
-
-<div class="row">
-
-    <div class="col-md-8">
-        @{Html.RenderAction("LoadNewHot");}
-    </div>
-
-    <div class="col-md-4">
-        @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "form_search" }))
+@*<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-inline", role = "form", @id = "form_search", style = "float:right;" }))
         {
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Nhập địa chỉ email hoặc số điện thoại" />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
-                </div>
+            <div class="form-group">
+                <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Nhập địa chỉ email hoặc số điện thoại" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
             </div>
         }
     </div>
+</div>*@
 
+<div class="row">
+    <div class="col-md-8">
+        @{Html.RenderAction("LoadNewHot2");}
+    </div>
+    <div class="col-md-4">
+        @*<img src="~/images/caudoiphai.png" class="img-responsive" style="display: inline-block;" />
+        <img src="~/images/caudoitrai.png" class="img-responsive" style="display: inline-block;" />*@
+        <div class="panel panel-default">
+            <div class="panel-heading kf_heading_1">
+                <h3 style="margin-top: 0;padding: 15px 10px 0px; color: #fff;">Tìm kiếm</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-inline", role = "form", @id = "form_search" }))
+                {
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Nhập địa chỉ email hoặc số điện thoại" required />
+                        </div>
+                    </div>
+                    <button class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+                }
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading kf_heading_1">
+                <h3 style="margin-top: 0;padding: 15px 10px 0px; color: #fff;">Danh sách thành viên</h3>
+            </div>
+            <div class="panel-body">
+                @{Html.RenderAction("DsUser");}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @{Html.RenderAction("LoadNewHot");}
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        @{Html.RenderAction("LoadNewCat");}
+    </div>
 </div>
 
 @section scripts {
@@ -46,6 +85,33 @@
 
             });
         }
+
+        $(document).ready(function ($) {
+            $('#example5').sliderPro({
+                width: 600,
+                height: 500,
+                orientation: 'vertical',
+                loop: false,
+                arrows: true,
+                buttons: false,
+                thumbnailsPosition: 'right',
+                thumbnailPointer: true,
+                thumbnailWidth: 183,
+                breakpoints: {
+                    800: {
+                        thumbnailsPosition: 'bottom',
+                        thumbnailWidth: 270,
+                        thumbnailHeight: 100
+                    },
+                    500: {
+                        thumbnailsPosition: 'bottom',
+                        thumbnailWidth: 120,
+                        thumbnailHeight: 50
+                    }
+                }
+            });
+        });
+
     </script>
 
 }

@@ -254,6 +254,13 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\sld\css\images\blank.gif" />
+    <Content Include="Content\sld\css\images\closedhand.cur" />
+    <Content Include="Content\sld\css\images\openhand.cur" />
+    <Content Include="Content\sld\css\slider-pro.css" />
+    <Content Include="Content\sld\css\slider-pro.min.css" />
+    <Content Include="Content\sld\js\jquery.sliderPro.js" />
+    <Content Include="Content\sld\js\jquery.sliderPro.min.js" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -313,6 +320,9 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="images\bg_header.png" />
+    <Content Include="images\caudoiphai.png" />
+    <Content Include="images\caudoitrai.png" />
     <Content Include="images\gia-pha-web.png" />
     <Content Include="images\thumbnail_gia-pha.jpg" />
     <Content Include="Models\gpwModel.Context.tt">
@@ -680,12 +690,16 @@
     <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Home\addfriend.cshtml" />
     <Content Include="Views\News\tin.cshtml" />
+    <Content Include="Views\Home\_LoadNewHot.cshtml" />
     <Content Include="Views\Cats\Create.cshtml" />
     <Content Include="Views\Cats\Delete.cshtml" />
     <Content Include="Views\Cats\Details.cshtml" />
     <Content Include="Views\Cats\Edit.cshtml" />
     <Content Include="Views\Cats\Index.cshtml" />
-    <Content Include="Views\Home\_LoadNewHot.cshtml" />
+    <Content Include="Views\Home\_LoadNewCat.cshtml" />
+    <Content Include="Views\Home\_LoadNewInCat.cshtml" />
+    <Content Include="Views\Home\_LoadNewHot2.cshtml" />
+    <Content Include="Views\Home\_DsUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8 post-wrapper">
+    <div class="col-md-9 post-wrapper">
 
         <div class="blog-section catgory-section">
 
@@ -24,40 +24,62 @@
                 {
                     foreach (var item in Model)
                     {
-                        <div class="blog-carousel category-single-post" style="border-bottom: 1px solid #cbcbcb;">
-                            <div class="row">
-                                <div class="carousel-item post-images col-xs-4">
-                                    <a href="/News/Details/@item.id" alt="@item.new_title" class="img-responsive">
-                                        <img src="@item.new_img">
-                                    </a>
-                                </div>
-                                <div class="post-description col-xs-8">
-                                    <a href="/News/Details/@item.id">
-                                        <p class="post-title">
-                                            @item.new_title
-                                        </p>
-                                    </a>
-                                    <div class="col-xs-12 noPadding">
-                                        @item.new_des
-                                    </div>
-                                </div>
+                <div class="blog-carousel category-single-post" style="border-bottom: 1px solid #cbcbcb;
+    margin-bottom: 7px;
+    background: #f5f5f5;">
+                    <div class="row">
+                        <div class="carousel-item post-images col-xs-4">
+                            <a href="/News/Details/@item.id" alt="@item.new_title" class="img-responsive">
+                                <img src="@item.new_img">
+                            </a>
+                        </div>
+                        <div class="post-description col-xs-8">
+                            <a href="/News/Details/@item.id">
+                                <p class="post-title">
+                                    @item.new_title
+                                </p>
+                            </a>
+                            <div class="col-xs-12 noPadding">
+                                @item.new_des
                             </div>
-                        </div><!-- /.category-single-post -->
+                        </div>
+                    </div>
+                </div><!-- /.category-single-post -->
                     }
                 }
             </div>
             <div class="category-pagination col-xs-12 noPadding">
                 @if (Model != null)
                 {
-                    @Html.PagedListPager(Model, page => Url.RouteUrl("dmTin", new { pg = page, url = ViewBag.url }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                @Html.PagedListPager(Model, page => Url.RouteUrl("dmTin", new { pg = page, url = ViewBag.url }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
                 }
             </div>
 
         </div>
 
     </div>
-    <div class="col-md-4">
-        Tìm kiếm
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tìm kiếm</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form" }))
+                {
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Nhập địa chỉ email hoặc số điện thoại" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary btn-block"><i class="fa fa-search"></i> Tìm kiếm</button>
+                        </div>
+                        
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 
