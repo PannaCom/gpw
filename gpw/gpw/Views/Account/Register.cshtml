@@ -259,6 +259,8 @@
                 $('#gioi_tinh').val($(this).val());
             })
 
+            $('#nam1').val('1980');
+
             $('#Email').on('change', function () {
                 if ($(this).val() !== "") {
                     $.ajax({
@@ -266,7 +268,7 @@
                         cache: false
                     }).done(function (html) {
                         if(html == "1"){
-                            alert('Địa chỉ emaild đã tồn tại, vui lòng chọn email khác.');
+                            alert('Địa chỉ email đã tồn tại, vui lòng chọn email khác.');
                         }
                     });
                 }

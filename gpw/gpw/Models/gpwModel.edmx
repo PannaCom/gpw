@@ -63,7 +63,7 @@
           <Property Name="dia_chi" Type="nvarchar" MaxLength="505" />
           <Property Name="so_cmt" Type="nvarchar" MaxLength="20" />
           <Property Name="nghe_nghiep" Type="nvarchar" MaxLength="500" />
-          <Property Name="hoc_van" Type="nvarchar" MaxLength="50" />
+          <Property Name="hoc_van" Type="nvarchar" MaxLength="500" />
           <Property Name="hinh_anh" Type="nvarchar" MaxLength="500" />
           <Property Name="biet_danh" Type="nvarchar" MaxLength="505" />
           <Property Name="doi_thu" Type="int" />
@@ -110,11 +110,11 @@
         <EntityContainer Name="gpwEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cats" EntityType="gpwModel.cat" />
           <EntitySet Name="friends" EntityType="gpwModel.friend" />
-          <EntitySet Name="thong_tin_user" EntityType="gpwModel.thong_tin_user" />
           <EntitySet Name="hoc_van" EntityType="gpwModel.hoc_van" />
           <EntitySet Name="jobs" EntityType="gpwModel.job" />
           <EntitySet Name="news" EntityType="gpwModel.news" />
           <EntitySet Name="Users" EntityType="gpwModel.User" />
+          <EntitySet Name="thong_tin_user" EntityType="gpwModel.thong_tin_user" />
         </EntityContainer>
         <EntityType Name="cat">
           <Key>
@@ -133,29 +133,6 @@
           <Property Name="user2" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="quan_he" Type="Int32" />
           <Property Name="do_sau" Type="Int32" />
-        </EntityType>
-        <EntityType Name="thong_tin_user">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ho_ten" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="dia_chi" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="so_cmt" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="nghe_nghiep" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="hoc_van" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="hinh_anh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="biet_danh" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="doi_thu" Type="Int32" />
-          <Property Name="gioi_tinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ngay_sinh" Type="DateTime" Precision="0" />
-          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
-          <Property Name="trang_thai" Type="Int32" />
-          <Property Name="quyen_han" Type="Int32" />
-          <Property Name="user_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="lon" Type="Double" />
-          <Property Name="lat" Type="Double" />
-          <Property Name="cq_ctac" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="hoc_van">
           <Key>
@@ -205,6 +182,29 @@
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="thong_tin_user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ho_ten" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="dia_chi" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="so_cmt" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="nghe_nghiep" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hoc_van" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hinh_anh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="biet_danh" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="doi_thu" Type="Int32" />
+          <Property Name="gioi_tinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_sinh" Type="DateTime" Precision="0" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <Property Name="trang_thai" Type="Int32" />
+          <Property Name="quyen_han" Type="Int32" />
+          <Property Name="user_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="lon" Type="Double" />
+          <Property Name="lat" Type="Double" />
+          <Property Name="cq_ctac" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -227,30 +227,6 @@
                 <ScalarProperty Name="quan_he" ColumnName="quan_he" />
                 <ScalarProperty Name="user2" ColumnName="user2" />
                 <ScalarProperty Name="user1" ColumnName="user1" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="thong_tin_user">
-            <EntityTypeMapping TypeName="gpwModel.thong_tin_user">
-              <MappingFragment StoreEntitySet="thong_tin_user">
-                <ScalarProperty Name="cq_ctac" ColumnName="cq_ctac" />
-                <ScalarProperty Name="lat" ColumnName="lat" />
-                <ScalarProperty Name="lon" ColumnName="lon" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="quyen_han" ColumnName="quyen_han" />
-                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
-                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
-                <ScalarProperty Name="ngay_sinh" ColumnName="ngay_sinh" />
-                <ScalarProperty Name="gioi_tinh" ColumnName="gioi_tinh" />
-                <ScalarProperty Name="doi_thu" ColumnName="doi_thu" />
-                <ScalarProperty Name="biet_danh" ColumnName="biet_danh" />
-                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
-                <ScalarProperty Name="hoc_van" ColumnName="hoc_van" />
-                <ScalarProperty Name="nghe_nghiep" ColumnName="nghe_nghiep" />
-                <ScalarProperty Name="so_cmt" ColumnName="so_cmt" />
-                <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
-                <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -304,6 +280,30 @@
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="thong_tin_user">
+            <EntityTypeMapping TypeName="gpwModel.thong_tin_user">
+              <MappingFragment StoreEntitySet="thong_tin_user">
+                <ScalarProperty Name="cq_ctac" ColumnName="cq_ctac" />
+                <ScalarProperty Name="lat" ColumnName="lat" />
+                <ScalarProperty Name="lon" ColumnName="lon" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="quyen_han" ColumnName="quyen_han" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="ngay_sinh" ColumnName="ngay_sinh" />
+                <ScalarProperty Name="gioi_tinh" ColumnName="gioi_tinh" />
+                <ScalarProperty Name="doi_thu" ColumnName="doi_thu" />
+                <ScalarProperty Name="biet_danh" ColumnName="biet_danh" />
+                <ScalarProperty Name="hinh_anh" ColumnName="hinh_anh" />
+                <ScalarProperty Name="hoc_van" ColumnName="hoc_van" />
+                <ScalarProperty Name="nghe_nghiep" ColumnName="nghe_nghiep" />
+                <ScalarProperty Name="so_cmt" ColumnName="so_cmt" />
+                <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+                <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

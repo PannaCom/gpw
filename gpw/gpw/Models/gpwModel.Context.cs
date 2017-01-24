@@ -27,10 +27,10 @@ namespace gpw.Models
     
         public virtual DbSet<cat> cats { get; set; }
         public virtual DbSet<friend> friends { get; set; }
-        public virtual DbSet<thong_tin_user> thong_tin_user { get; set; }
         public virtual DbSet<hoc_van> hoc_van { get; set; }
         public virtual DbSet<job> jobs { get; set; }
         public virtual DbSet<news> news { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<thong_tin_user> thong_tin_user { get; set; }
     }
 }
