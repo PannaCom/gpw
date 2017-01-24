@@ -147,6 +147,18 @@ namespace gpw.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult CheckEmailExist(string email)
+        {
+            string result = "0";
+            var email1 = db.Users.Any(x => x.Email == email);
+            if (email1 == true)
+            {
+                result = "1";
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -158,6 +170,7 @@ namespace gpw.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
                     //var sql = "insert into thong_tin_user(ho_ten, user_id, ngay_tao) values (N'" + model.ho_ten + "', '" + user.Id + "','" + DateTime.Now + "')";
@@ -195,6 +208,7 @@ namespace gpw.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     return RedirectToAction("Index", "Home");
                 }
+                AddErrors(result);
                 
             }
 

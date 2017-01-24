@@ -65,9 +65,10 @@ namespace gpw.Models
 
     public class RegisterViewModel
     {
-        [Required(ErrorMessage="Vui lòng nhập họ tên.")]
-        [Display(Name = "Họ và tên")]
+        [Display(Name = "Họ tên")]
+        [Required(ErrorMessage="Vui lòng nhập họ tên.")]        
         public string ho_ten { get; set; }
+
         [Required(ErrorMessage="Vui lòng nhập địa chỉ email")]
         [EmailAddress(ErrorMessage = "Vui lòng nhập chính xác địa chỉ email.")]
         [Display(Name = "Địa chỉ email")]
@@ -88,6 +89,7 @@ namespace gpw.Models
         public string dia_chi { get; set; }
 
         public string so_cmt { get; set; }
+
         [Required(ErrorMessage = "Vui lòng nhập nghề nghiệp")]
         public string nghe_nghiep { get; set; }
 

@@ -31,5 +31,6 @@ namespace gpw.Models
         public virtual DbSet<hoc_van> hoc_van { get; set; }
         public virtual DbSet<job> jobs { get; set; }
         public virtual DbSet<news> news { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

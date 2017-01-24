@@ -13,7 +13,7 @@
 {
     @Html.AntiForgeryToken()
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 
 
     <div class="form-group">
@@ -257,6 +257,19 @@
 
             $('input[name^="sgioi_tinh"]').on('change', function () {
                 $('#gioi_tinh').val($(this).val());
+            })
+
+            $('#Email').on('change', function () {
+                if ($(this).val() !== "") {
+                    $.ajax({
+                        url: "/Account/CheckEmailExist?email=" + $(this).val(),
+                        cache: false
+                    }).done(function (html) {
+                        if(html == "1"){
+                            alert('Địa chỉ emaild đã tồn tại, vui lòng chọn email khác.');
+                        }
+                    });
+                }
             })
 
             //$('#ngay_sinh').datepicker({
