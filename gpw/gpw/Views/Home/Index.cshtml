@@ -5,6 +5,10 @@
 
 <div class="row">
 
+    <div class="col-md-8">
+        @{Html.RenderAction("LoadNewHot");}
+    </div>
+
     <div class="col-md-4">
         @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-horizontal", role = "form", @id = "form_search" }))
         {
@@ -17,7 +21,31 @@
                 </div>
             </div>
         }
-
     </div>
 
 </div>
+
+@section scripts {
+
+    <script>
+        if ($('.kf_agent_slider').length) {
+            var owl = $(".kf_agent_slider");
+            owl.owlCarousel({
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                itemsCustom: [
+                  [0, 1],
+                  [450, 1],
+                  [600, 1],
+                  [700, 2],
+                  [1000, 3],
+                  [1200, 4],
+                  [1400, 4],
+                  [1600, 4]
+                ],
+                navigation: true
+
+            });
+        }
+    </script>
+
+}

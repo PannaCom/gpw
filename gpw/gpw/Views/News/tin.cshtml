@@ -1,4 +1,6 @@
-﻿@{
+﻿@model PagedList.IPagedList<gpw.Models.news>
+@using PagedList.Mvc;
+@{
     ViewBag.Title = @ViewBag.danhmuctin;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -15,26 +17,42 @@
 <div class="row">
     <div class="col-md-8 post-wrapper">
 
-        <div class="blog-section catgory-section col-xs-12">
+        <div class="blog-section catgory-section">
 
-            <div class="col-xs-12 post-wrapper">
-                <div class="blog-carousel category-single-post col-xs-12 noPadding">
-                    <div class="row">
-                        <div class="carousel-item post-images col-xs-4">
-                            <a href="http://hoduongvietnam.com.vn/thu-chuc-mung-nam-moi-cua-chu-tich-hoi-dong-ho-duong-viet-nam-p1601"><img src="http://hoduongvietnam.com.vn/timthumb.php?src=http://hoduongvietnam.com.vn/uploads/images/1484730389.jpg&amp;h=180&amp;w=270&amp;zc=1" alt="Thư chúc mừng năm mới của Chủ tịch Hội đồng Họ Dương Việt Nam" class="img-responsive"></a>
-                        </div>
-                        <div class="post-description col-xs-8">
-                            <a href="http://hoduongvietnam.com.vn/thu-chuc-mung-nam-moi-cua-chu-tich-hoi-dong-ho-duong-viet-nam-p1601"><p class="post-title">Thư chúc mừng năm mới của Chủ tịch Hội đồng Họ Dương Việt Nam</p></a>
-                            <div class="col-xs-12 noPadding">
-                                Năm 2016, Hội đồng Họ Dương các cấp cùng toàn thể bà con Họ Dương cả nước, bà con Họ Dương ở nước ngoài đã đoàn kết, phát huy sức mạnh tổng hợp, hoàn thành xuất sắc trên các lĩnh vực hoạt động: Xây dựng, kết nối Dòng tộc; hướng về cội nguồn, tri ân Tổ Tiên, đền ơn đáp nghĩa; khuyến học – khuyến tài; tương thân – tương ái; thông tin tuyên truyền; phát triển kinh tế và cùng xã hội chăm lo sự nghiệp xây dựng, bảo vệ Tổ quốc.
+            <div class="post-wrapper">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="blog-carousel category-single-post" style="border-bottom: 1px solid #cbcbcb;">
+                            <div class="row">
+                                <div class="carousel-item post-images col-xs-4">
+                                    <a href="/News/Details/@item.id" alt="@item.new_title" class="img-responsive">
+                                        <img src="@item.new_img">
+                                    </a>
+                                </div>
+                                <div class="post-description col-xs-8">
+                                    <a href="/News/Details/@item.id">
+                                        <p class="post-title">
+                                            @item.new_title
+                                        </p>
+                                    </a>
+                                    <div class="col-xs-12 noPadding">
+                                        @item.new_des
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div><!-- /.category-single-post -->
+                        </div><!-- /.category-single-post -->
+                    }
+                }
             </div>
             <div class="category-pagination col-xs-12 noPadding">
-
+                @if (Model != null)
+                {
+                    @Html.PagedListPager(Model, page => Url.RouteUrl("dmTin", new { pg = page, url = ViewBag.url }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                }
             </div>
+
         </div>
 
     </div>

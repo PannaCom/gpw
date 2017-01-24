@@ -1,91 +1,31 @@
 ﻿@model gpw.Models.news
 
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+@{
+    if (Model != null)
+    {
+        ViewBag.title += @Model.new_title;
+    }    
+}
 
-<div>
-    <h4>news</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.new_title)
-        </dt>
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>@Model.new_title</h1>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.new_title)
-        </dd>
+            <p>Ngày tạo: <i>@Model.ngay_tao</i></p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.new_content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.new_content)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.new_flug)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.new_flug)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.new_img)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.new_img)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cat_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cat_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.user_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.user_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.quyen_hang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.quyen_hang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.trang_thai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.trang_thai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isHot)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isHot)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <div class="content_baiviet">
+                @Html.Raw(@Model.new_content)
+            </div>
+        </div>
+    </div>
+}

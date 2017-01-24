@@ -92,5 +92,11 @@ namespace gpw.Controllers
 
             return RedirectToAction("profile");
         }
+
+        public ActionResult LoadNewHot()
+        {
+            var model = db.news.Where(x => x.isHot == 1).Select(x => x).Take(10).ToList();
+            return PartialView("_LoadNewHot", model);
+        }
     }
 }

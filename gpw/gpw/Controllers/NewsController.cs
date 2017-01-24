@@ -79,6 +79,7 @@ namespace gpw.Controllers
         }
 
         // GET: News/Details/5
+        [AllowAnonymous]
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -315,6 +316,7 @@ namespace gpw.Controllers
 	        {
                  return RedirectToAction("Index", "Home");
 	        }
+            ViewBag.url = url;
             var cat = (from c in db.cats where c.cat_url == url select c).FirstOrDefault();
             if (cat == null)
             {
