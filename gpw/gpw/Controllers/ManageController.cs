@@ -82,7 +82,7 @@ namespace gpw.Controllers
             return View(userInfo);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         public string getHocVan(string keyword)
         {
             if (keyword == null) keyword = "";
@@ -90,7 +90,7 @@ namespace gpw.Controllers
             return JsonConvert.SerializeObject(p);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         public string getNgheNghiep(string keyword)
         {
             if (keyword == null) keyword = "";
@@ -100,7 +100,7 @@ namespace gpw.Controllers
 
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult CapNhatThongTin(thong_tin_user model)
+        public ActionResult CapNhatThongTin(thong_tin_user model, string ngay_sinh2)
         {
             if (!ModelState.IsValid)
             {
@@ -109,9 +109,33 @@ namespace gpw.Controllers
             }
             var userId = User.Identity.GetUserId();
 
-            string sql = "update thong_tin_user set ho_ten = N'" + model.ho_ten + "', biet_danh = N'" + model.biet_danh + "', gioi_tinh = N'" + model.gioi_tinh + "', hoc_van = N'" + model.hoc_van + "', dia_chi = N'" + model.dia_chi + "', ngay_sinh = '" + model.ngay_sinh.ToString() + "', nghe_nghiep = N'" + model.nghe_nghiep + "', trang_thai = '1', quyen_han = '" + model.quyen_han + "', ngay_tao = '" + DateTime.Now + "', hinh_anh = '" + model.hinh_anh + "', cq_ctac = N'" + model.cq_ctac + "', lon = '" + model.lon + "', lat = '" + model.lat + "', so_cmt = '"+ model.so_cmt +"' where user_id = '" + userId + "'";
+            //string sql = "update thong_tin_user set ho_ten = N'" + model.ho_ten + "', biet_danh = N'" + model.biet_danh + "', gioi_tinh = N'" + model.gioi_tinh + "', hoc_van = N'" + model.hoc_van + "', dia_chi = N'" + model.dia_chi + "', ngay_sinh = '" + model.ngay_sinh.ToString() + "', nghe_nghiep = N'" + model.nghe_nghiep + "', trang_thai = '1', quyen_han = '" + model.quyen_han + "', ngay_tao = '" + DateTime.Now + "', hinh_anh = '" + model.hinh_anh + "', cq_ctac = N'" + model.cq_ctac + "', lon = '" + model.lon + "', lat = '" + model.lat + "', so_cmt = '"+ model.so_cmt +"' where user_id = '" + userId + "'";
 
-            var updateInfo = db.Database.ExecuteSqlCommand(sql);
+            //var updateInfo = db.Database.ExecuteSqlCommand(sql);
+            var userInfo = db.thong_tin_user.Where(x => x.user_id == userId).FirstOrDefault();
+            userInfo.ho_ten = model.ho_ten ?? null;
+            userInfo.biet_danh = model.biet_danh ?? null;
+            userInfo.cq_ctac = model.cq_ctac ?? null;
+            userInfo.dia_chi = model.dia_chi ?? null;
+            userInfo.gioi_tinh = model.gioi_tinh ?? null;
+            userInfo.hinh_anh = model.hinh_anh ?? null;
+            userInfo.hoc_van = model.hoc_van ?? null;
+            userInfo.lat = model.lat ?? null;
+            userInfo.lon = model.lon ?? null;
+            string dateTime = ngay_sinh2 != null ? ngay_sinh2 : null;
+            DateTime? dt = new DateTime();
+            if (dateTime != null)
+            {
+                dt = Convert.ToDateTime(dateTime);
+            }
+            userInfo.ngay_sinh = ngay_sinh2 != null ? dt : userInfo.ngay_sinh;
+            userInfo.ngay_tao = DateTime.Now;
+            userInfo.nghe_nghiep = model.nghe_nghiep ?? null;
+            userInfo.quyen_han = model.quyen_han ?? null;
+            userInfo.so_cmt = model.so_cmt ?? null;
+            userInfo.trang_thai = model.trang_thai ?? null;
+            db.Entry<thong_tin_user>(userInfo).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
             TempData["update"] = "Cập nhật thành công";
             return RedirectToAction("Index");
         }
@@ -370,6 +394,7 @@ namespace gpw.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult uploadimg()
         {
             var fName = "";

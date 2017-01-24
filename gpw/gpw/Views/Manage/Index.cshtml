@@ -65,6 +65,7 @@
                 Giới tính:
             </label>
             <div class="col-md-10">
+                <span>@Model.gioi_tinh</span>
                 <label><input type="radio" name="sgioi_tinh" value="Nam" /> Nam</label>
                 <label><input type="radio" name="sgioi_tinh" value="Nữ" /> Nữ</label>
                 @Html.HiddenFor(m => m.gioi_tinh)
@@ -97,7 +98,21 @@
                 Ngày sinh:
             </label>
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.ngay_sinh, new { @class = "form-control", placeholder = "Ngày sinh thành viên", requred = "" })
+                @*@Html.TextBoxFor(m => m.ngay_sinh, new { @class = "form-control", placeholder = "Ngày sinh thành viên", requred = "" })*@
+                <span>@string.Format("{0:dd/MM/yyyy}", Model.ngay_sinh)</span>
+                <input type="hidden" name="ngay_sinh2" id="ngay_sinh2" />
+                <div style="display: inline-flex;">
+                    <select name="ngay1" id="ngay1" class="form-control" style="width: 80px;" onchange="CongNgay();">
+                        <option value="">Ngày</option>
+                    </select>
+                    <select name="thang1" id="thang1" class="form-control" style="width: 90px;" onchange="CongNgay();">
+                        <option value="">Tháng</option>
+                    </select>
+                    <select name="nam1" id="nam1" class="form-control" style="width: 100px;" onchange="CongNgay();">
+                        <option value="">Năm</option>
+                    </select>
+                </div>
+                @*@Html.ValidationMessageFor(m => m.ngay_sinh, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -193,7 +208,36 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLPSKQ4QV4xGiQjnZDUecx-UEr3D0QePY&libraries=places" type="text/javascript"></script>
     
     <script>
-
+        ngay1();
+        function ngay1() {
+            var x = "";
+            for (var i = 1; i <= 31; i++) {
+                x += "<option value='" + i + "'>" + i + "</option>";
+            }
+            $('#ngay1').append(x);
+        }
+        thang1();
+        function thang1() {
+            var x = "";
+            for (var i = 1; i <= 12; i++) {
+                x += "<option value='" + i + "'>" + i + "</option>";
+            }
+            $('#thang1').append(x);
+        }
+        nam1();
+        function nam1() {
+            var x = "";
+            for (var i = 1920; i <= 2017; i++) {
+                x += "<option value='" + i + "'>" + i + "</option>";
+            }
+            $('#nam1').append(x);
+        }
+        function CongNgay() {
+            if (document.getElementById('ngay1').value !== "" && document.getElementById('thang1').value !== "" && document.getElementById('nam1').value !== "") {
+                var snt1 = document.getElementById('thang1').value + "/" + document.getElementById('ngay1').value + "/" + document.getElementById('nam1').value;
+                document.getElementById('ngay_sinh2').value = snt1;
+            }
+        }
 
         @if (Model.quyen_han != null)
         {
@@ -204,25 +248,27 @@
           <text>$('#trang_thai').val('@Model.trang_thai');</text>
         }
 
-        @if (Model.ngay_sinh != null)
+        @*@if (Model.ngay_sinh != null)
         {
-            <text>$('#ngay_sinh').val('@string.Format("{0:dd/MM/yyyy}", Model.ngay_sinh)')</text>
-        }
+            <text>$('#ngay_sinh_1').val('@string.Format("{0:dd/MM/yyyy}", Model.ngay_sinh)')</text>
+        }*@
 
         $(document).ready(function () {
             $('input[name^="sgioi_tinh"]').on('change', function () {
                 $('#gioi_tinh').val($(this).val());
             })
 
-            $('#ngay_sinh').datepicker({
-                changeMonth: true,
-                changeYear: true,
-                showButtonPanel: true,
-                dateFormat: 'dd/mm/yy',
-                //onClose: function (dateText, inst) {
-                //    $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
-                //}
-            });
+            
+
+            //$('#ngay_sinh_1').datepicker({
+            //    changeMonth: true,
+            //    changeYear: true,
+            //    showButtonPanel: true,
+            //    dateFormat: 'dd/mm/yy',
+            //    //onClose: function (dateText, inst) {
+            //    //    $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+            //    //}
+            //});
 
             $('#CapNhatThongTin').submit(function () {
                 if ($('#lon').val() === "" || $('#lat').val() === "") {

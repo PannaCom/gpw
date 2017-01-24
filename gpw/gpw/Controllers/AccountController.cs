@@ -140,6 +140,10 @@ namespace gpw.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Manage");
+            }
             return View();
         }
 
@@ -156,8 +160,33 @@ namespace gpw.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var sql = "insert into thong_tin_user(ho_ten, user_id, ngay_tao) values (N'" + model.ho_ten + "', '" + user.Id + "', ngay_tao = '" + DateTime.Now + "')";
-                    var userInfo = db.Database.ExecuteSqlCommand(sql);
+                    //var sql = "insert into thong_tin_user(ho_ten, user_id, ngay_tao) values (N'" + model.ho_ten + "', '" + user.Id + "','" + DateTime.Now + "')";
+                    //var userInfo = db.Database.ExecuteSqlCommand(sql);
+                    thong_tin_user newInfo = new thong_tin_user();
+                    newInfo.ho_ten = model.ho_ten ?? null;
+                    newInfo.biet_danh = model.biet_danh ?? null;
+                    newInfo.cq_ctac = model.cq_ctac ?? null;
+                    newInfo.dia_chi = model.dia_chi ?? null;
+                    newInfo.gioi_tinh = model.gioi_tinh ?? null;
+                    newInfo.hinh_anh = model.hinh_anh ?? null;
+                    newInfo.hoc_van = model.hoc_van ?? null;
+                    newInfo.lat = model.lat ?? null;
+                    newInfo.lon = model.lon ?? null;
+                    string dateTime = model.ngay_sinh != null ? model.ngay_sinh : null;
+                    DateTime? dt = new DateTime();
+                    if (dateTime != null)
+                    {
+                        dt = Convert.ToDateTime(dateTime);
+                    }
+                    newInfo.ngay_sinh = model.ngay_sinh != null ? dt : null;
+                    newInfo.ngay_tao = DateTime.Now;
+                    newInfo.nghe_nghiep = model.nghe_nghiep ?? null;
+                    newInfo.quyen_han = 1;
+                    newInfo.so_cmt = model.so_cmt ?? null;
+                    newInfo.trang_thai = 1;
+                    newInfo.user_id = user.Id;
+                    db.thong_tin_user.Add(newInfo);
+                    db.SaveChanges();
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -165,9 +194,8 @@ namespace gpw.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     return RedirectToAction("Index", "Home");
-
                 }
-                AddErrors(result);
+                
             }
 
             // If we got this far, something failed, redisplay form

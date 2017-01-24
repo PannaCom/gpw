@@ -321,6 +321,8 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="images\bg_header.png" />
+    <Content Include="images\caudoiphai.png" />
+    <Content Include="images\caudoitrai.png" />
     <Content Include="images\gia-pha-web.png" />
     <Content Include="images\thumbnail_gia-pha.jpg" />
     <Content Include="Models\gpwModel.Context.tt">
