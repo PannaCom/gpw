@@ -323,6 +323,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="images\0041406.jpg" />
     <Content Include="images\bg_header.png" />
     <Content Include="images\caudoiphai.png" />
     <Content Include="images\caudoitrai.png" />

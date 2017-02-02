@@ -256,3 +256,10 @@ textarea {
         position: relative;
     }
 
+    body {
+        background: url(/images/0041406.jpg) repeat center; 
+    }
+
+    .wrapper_main {
+        background: #fff;
+    }
