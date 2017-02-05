@@ -3,10 +3,10 @@
 <div class="newshot">
 
     <!--Our Agent Warp Start-->
-    <section class="kf_our_agent_bg">
+    <section class="kf_our_agent_bg box_giapha panel">
         <!--Heading Wrap Start-->
-        <div class="kf_heading_1">
-            <h3 style="margin-top: 0; color: #fff;">Trang nhất</h3>
+        <div class="kf_heading_1 panel-heading">
+            <h3>Trang nhất</h3>
         </div>
 
         <div id="example5" class="slider-pro">
@@ -21,24 +21,36 @@
                                      data-src="@item.new_img"
                                      data-retina="@item.new_img" />
                             </a>
-                            <div class="sp-caption"><a href="/News/Details/@item.id">@item.new_title</a></div>
+                            <div class="sp-caption">
+                                <a href="/News/Details/@item.id">
+                                    @if (item.new_title.Length > 78)
+                                    {
+                                        <text>@item.new_title.Substring(0,78)<span>...</span></text>
+                                    }
+                                    else
+                                    {
+                                        <text>@item.new_title</text>
+                                    }
+                                </a>
+                            </div>
                         </div>
                     }
-                }              
+                }
             </div>
             <div class="sp-thumbnails">
                 @if (Model.Count > 0)
                 {
                     foreach (var item in Model)
                     {
-                        <div class="sp-thumbnail" style="padding: 5px; border-top: 1px solid #cbcbcb; border-bottom: 1px solid #cbcbcb;">
+                        <div class="sp-thumbnail">
                             <div class="sp-thumbnail-text">
+                                @*<div class="sp-thumbnail-title">@if(@item.new_title.Length >= 59) {<text>@item.new_title.Substring(0, 59)</text> } else {<text>@item.new_title</text>}</div>*@
                                 <div class="sp-thumbnail-title">@item.new_title</div>
                             </div>
                         </div>
                     }
                 }
-                
+
             </div>
         </div>
     </section>

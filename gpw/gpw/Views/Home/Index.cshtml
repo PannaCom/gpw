@@ -3,18 +3,18 @@
 }
 
 @*<div class="row">
-    <div class="col-md-12">
-        @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-inline", role = "form", @id = "form_search", style = "float:right;" }))
-        {
-            <div class="form-group">
-                <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Nhập địa chỉ email hoặc số điện thoại" />
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
-            </div>
-        }
-    </div>
-</div>*@
+        <div class="col-md-12">
+            @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-inline", role = "form", @id = "form_search", style = "float:right;" }))
+            {
+                <div class="form-group">
+                    <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Nhập địa chỉ email hoặc số điện thoại" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+                </div>
+            }
+        </div>
+    </div>*@
 
 <div class="row">
     <div class="col-md-8">
@@ -22,32 +22,79 @@
     </div>
     <div class="col-md-4">
         @*<img src="~/images/caudoiphai.png" class="img-responsive" style="display: inline-block;" />
-        <img src="~/images/caudoitrai.png" class="img-responsive" style="display: inline-block;" />*@
-        <div class="panel panel-default">
-            <div class="panel-heading kf_heading_1">
-                <h3 style="margin-top: 0;padding: 15px 10px 0px; color: #fff;">Tìm kiếm</h3>
+            <img src="~/images/caudoitrai.png" class="img-responsive" style="display: inline-block;" />*@
+        <div class="panel panel-default box_giapha">
+            <div class="panel-heading kf_heading_1" style="padding: 0;">
+                <h3>Tìm kiếm</h3>
             </div>
+
             <div class="panel-body">
-                @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-inline", role = "form", @id = "form_search" }))
-                {
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Nhập địa chỉ email hoặc số điện thoại" required />
+                @*@using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-inline", role = "form", @id = "form_search" }))
+                    {
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="search" name="keyword" id="keyword" class="form-control" placeholder="Nhập địa chỉ email hoặc số điện thoại" required />
+                            </div>
                         </div>
-                    </div>
-                    <button class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
-                }
+                        <button class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+                    }*@
+                <div class="search-bar">
+                    <form action="/Home/Search" method="GET" role="form" id="form_search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Nhập từ khóa tìm kiếm">
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading kf_heading_1">
-                <h3 style="margin-top: 0;padding: 15px 10px 0px; color: #fff;">Danh sách thành viên</h3>
+        <div class="panel panel-default box_giapha">
+            <div class="panel-heading kf_heading_1" style="padding-bottom: 0;">
+                <h3>Danh sách thành viên</h3>
             </div>
             <div class="panel-body">
-                @{Html.RenderAction("DsUser");}
+                @*@{Html.RenderAction("DsUser");}*@
+                <ul id="person_flat">
+                    <li><a href="#"><img src="~/images/person-flat.png" /></a></li>
+                    <li><a href="#"><img src="~/images/person-flat.png" /></a></li>
+                    <li><a href="#"><img src="~/images/person-girl-flat.png" /></a></li>
+                    <li><a href="#"><img src="~/images/person-flat.png" /></a></li>
+                    <li><a href="#"><img src="~/images/person-girl-flat.png" /></a></li>
+                    <li><a href="#"><img src="~/images/person-flat.png" /></a></li>
+                    <li><a href="#"><img src="~/images/person-flat.png" /></a></li>
+                    <li><a href="#"><img src="~/images/person-girl-flat.png" /></a></li>
+                </ul>
+                <a href="#" style="float: right;">Xem tất cả</a>
             </div>
         </div>
+
+        <div class="panel panel-default box_giapha">
+            <div class="panel-body">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: 84px;">
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <p>Đừng so sánh mình với bất cứ ai trong thế giới này. Nếu bạn làm như vậy có nghĩa bạn đang sỉ nhục chính bản thân mình. </p>
+                            <b style="float: right; margin-top: 5px;">Bill Gates</b>
+                        </div>
+                        <div class="item">
+                            <p>Ta không được chọn nơi mình sinh ra. Nhưng ta được chọn cách mình sẽ sống.</p>
+                            <b style="float: right; margin-top: 5px;">Khuyết danh</b>
+                        </div>
+                    </div>
+
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" style="bottom: 0;">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active" style="background: #333;"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1" style="background: #333;"></li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </div>
 
@@ -86,17 +133,18 @@
             });
         }
 
+
         $(document).ready(function ($) {
             $('#example5').sliderPro({
-                width: 600,
-                height: 500,
+                width: 545,
+                height: 443,
                 orientation: 'vertical',
                 loop: false,
                 arrows: true,
                 buttons: false,
-                thumbnailsPosition: 'right',
+                thumbnailsPosition: 'left',
                 thumbnailPointer: true,
-                thumbnailWidth: 183,
+                thumbnailWidth: 200,
                 breakpoints: {
                     800: {
                         thumbnailsPosition: 'bottom',
@@ -113,5 +161,4 @@
         });
 
     </script>
-
 }
