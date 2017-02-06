@@ -84,7 +84,7 @@ namespace gpw.Controllers
             friend NewFriend = new friend();
             NewFriend.user1 = userId2;
             NewFriend.user2 = userId;
-            NewFriend.quan_he = quanhe;
+            NewFriend.quan_he_id = quanhe;
             NewFriend.do_sau = dosau;
             db.friends.Add(NewFriend);
             db.SaveChanges();
@@ -111,10 +111,28 @@ namespace gpw.Controllers
             return PartialView("_LoadNewCat", model.ToList());
         }
 
+        public ActionResult LoadNewCat2()
+        {
+            var model = from c in db.cats select c;
+            return PartialView("_LoadNewCat2", model.ToList());
+        }
+
         public ActionResult LoadNewInCat(int cat_id)
         {
             var model = db.news.Where(x => x.cat_id == cat_id).OrderByDescending(x => x.id).Select(x => x).ToList().Take(8);
             return PartialView("_LoadNewInCat", model.ToList());
+        }
+
+        public ActionResult LoadNewInCat2(int cat_id)
+        {
+            var model = db.news.Where(x => x.cat_id == cat_id).OrderByDescending(x => x.id).Select(x => x).ToList().Take(8);
+            return PartialView("_LoadNewInCat2", model.ToList());
+        }
+
+        public ActionResult LoadNewInCat_top(int cat_id)
+        {
+            var model = db.news.Where(x => x.cat_id == cat_id).OrderByDescending(x => x.id).Select(x => x).First();
+            return PartialView("_LoadNewInCat_top", model);
         }
 
         public ActionResult DsUser()
@@ -122,6 +140,18 @@ namespace gpw.Controllers
             var model = db.thong_tin_user.Select(x => x).ToList();
             return PartialView("_DsUser", model);
         }
+
+        
+
+        public ActionResult GiaPha()
+        {
+            
+
+
+
+            return View();
+        }
+
 
     }
 }

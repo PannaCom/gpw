@@ -17,7 +17,7 @@ namespace gpw.Models
         public long id { get; set; }
         public string user1 { get; set; }
         public string user2 { get; set; }
-        public Nullable<int> quan_he { get; set; }
+        public Nullable<int> quan_he_id { get; set; }
         public Nullable<int> do_sau { get; set; }
     }
 }

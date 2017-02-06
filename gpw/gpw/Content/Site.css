@@ -7,12 +7,34 @@
     #header {
         height: 240px;
     }
+
+    .item_new_top {
+        margin-right: 0;
+        display: inline-flex;
+        border-bottom: 1px dotted #cbcbcb;
+        padding-bottom: 0;
+    }
+
+    .item_new_top figure {
+            padding-right: 6px;
+    }
+
+    .item_new_top figure img{
+        width: 188px;
+    }
+
+    .item_dsnews {
+        /*height: 390px;*/
+    }
+
 }
 
 @media(max-width: 512px) {
     #header {
         height: 100px;
     }
+
+
 }
 
 body {
@@ -331,9 +353,25 @@ textarea {
 }
 
     #person_flat li a img {
-        width: 70px;
-        height: 70px;
+        width: 40px;
+        height: 40px;
     }
+
+.item_thanhvien h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.item_thanhvien {
+        border-bottom: 1px solid #cbcbcb;
+    margin-bottom: 5px;
+}
+
+.border_w0 {
+    border-bottom-width: 0px;
+}
 
     #person_flat li {
         margin: 3px;
@@ -353,7 +391,7 @@ textarea {
     }
 
     .NewsLoad {
-        padding: 4px 16px;
+       padding: 1px 16px;
     }
 
     .kf_agent_wrap:hover .kf_agent_des {
@@ -366,4 +404,15 @@ textarea {
     margin-top: 10px;
     padding: 20px;
     text-align: center;
+    }
+
+    .list_news {
+            padding-left: 20px;
+                height: 170px;
+    }
+
+    #gia_pha_0 {
+        background: url(/images/caygiaphamay_bg.jpg) center center no-repeat;
+        height: 900px;
+        width: 100%;
     }

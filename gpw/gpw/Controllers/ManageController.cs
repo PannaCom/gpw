@@ -94,7 +94,7 @@ namespace gpw.Controllers
         public string getNgheNghiep(string keyword)
         {
             if (keyword == null) keyword = "";
-            var p = (from q in db.jobs where q.nghe_nghiep.Contains(keyword) orderby q.nghe_nghiep ascending select q.nghe_nghiep).ToList().Distinct();
+            var p = (from q in db.nghe_nghiep where q.ten_nghe_nghiep.Contains(keyword) orderby q.ten_nghe_nghiep ascending select q.ten_nghe_nghiep).ToList().Distinct();
             return JsonConvert.SerializeObject(p);
         }
 

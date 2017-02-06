@@ -1,0 +1,17 @@
+﻿@model gpw.Models.news
+
+
+@if (Model != null)
+{
+    <a href="@string.Format("/News/Details/{0}", Model.id)" class="item_new_top">
+        <figure>
+            <img src="@Model.new_img" alt="@Model.new_title" style="height: 200px;">
+            <figcaption>
+                <span class="kf_listing_overlay"></span>
+            </figcaption>
+        </figure>
+        @Model.new_title
+    </a>
+}
+
+

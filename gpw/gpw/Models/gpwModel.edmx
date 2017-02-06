@@ -20,7 +20,7 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user1" Type="nvarchar" MaxLength="128" />
           <Property Name="user2" Type="nvarchar" MaxLength="128" />
-          <Property Name="quan_he" Type="int" />
+          <Property Name="quan_he_id" Type="int" />
           <Property Name="do_sau" Type="int" />
         </EntityType>
         <EntityType Name="hoc_van">
@@ -29,13 +29,6 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ten_truong" Type="nvarchar" MaxLength="500" />
-        </EntityType>
-        <EntityType Name="job">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nghe_nghiep" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="news">
           <Key>
@@ -53,6 +46,20 @@
           <Property Name="isHot" Type="tinyint" />
           <Property Name="ngay_tao" Type="datetime" />
           <Property Name="new_des" Type="nvarchar" MaxLength="505" />
+        </EntityType>
+        <EntityType Name="nghe_nghiep">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_nghe_nghiep" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="quan_he">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_quan_he" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="thong_tin_user">
           <Key>
@@ -98,8 +105,9 @@
           <EntitySet Name="cats" EntityType="Self.cats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="friends" EntityType="Self.friends" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="hoc_van" EntityType="Self.hoc_van" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="job" EntityType="Self.job" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nghe_nghiep" EntityType="Self.nghe_nghiep" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quan_he" EntityType="Self.quan_he" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="thong_tin_user" EntityType="Self.thong_tin_user" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -111,10 +119,11 @@
           <EntitySet Name="cats" EntityType="gpwModel.cat" />
           <EntitySet Name="friends" EntityType="gpwModel.friend" />
           <EntitySet Name="hoc_van" EntityType="gpwModel.hoc_van" />
-          <EntitySet Name="jobs" EntityType="gpwModel.job" />
           <EntitySet Name="news" EntityType="gpwModel.news" />
-          <EntitySet Name="Users" EntityType="gpwModel.User" />
           <EntitySet Name="thong_tin_user" EntityType="gpwModel.thong_tin_user" />
+          <EntitySet Name="Users" EntityType="gpwModel.User" />
+          <EntitySet Name="nghe_nghiep" EntityType="gpwModel.nghe_nghiep" />
+          <EntitySet Name="quan_he" EntityType="gpwModel.quan_he" />
         </EntityContainer>
         <EntityType Name="cat">
           <Key>
@@ -131,7 +140,7 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user1" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="user2" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="quan_he" Type="Int32" />
+          <Property Name="quan_he_id" Type="Int32" />
           <Property Name="do_sau" Type="Int32" />
         </EntityType>
         <EntityType Name="hoc_van">
@@ -140,13 +149,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ten_truong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="job">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nghe_nghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="news">
           <Key>
@@ -164,23 +166,6 @@
           <Property Name="isHot" Type="Byte" />
           <Property Name="ngay_tao" Type="DateTime" Precision="3" />
           <Property Name="new_des" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="thong_tin_user">
           <Key>
@@ -205,7 +190,38 @@
           <Property Name="lat" Type="Double" />
           <Property Name="cq_ctac" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="nghe_nghiep">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_nghe_nghiep" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="quan_he">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_quan_he" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -224,7 +240,7 @@
             <EntityTypeMapping TypeName="gpwModel.friend">
               <MappingFragment StoreEntitySet="friends">
                 <ScalarProperty Name="do_sau" ColumnName="do_sau" />
-                <ScalarProperty Name="quan_he" ColumnName="quan_he" />
+                <ScalarProperty Name="quan_he_id" ColumnName="quan_he_id" />
                 <ScalarProperty Name="user2" ColumnName="user2" />
                 <ScalarProperty Name="user1" ColumnName="user1" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -235,14 +251,6 @@
             <EntityTypeMapping TypeName="gpwModel.hoc_van">
               <MappingFragment StoreEntitySet="hoc_van">
                 <ScalarProperty Name="ten_truong" ColumnName="ten_truong" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="jobs">
-            <EntityTypeMapping TypeName="gpwModel.job">
-              <MappingFragment StoreEntitySet="job">
-                <ScalarProperty Name="nghe_nghiep" ColumnName="nghe_nghiep" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -262,24 +270,6 @@
                 <ScalarProperty Name="new_content" ColumnName="new_content" />
                 <ScalarProperty Name="new_title" ColumnName="new_title" />
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="gpwModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -303,6 +293,40 @@
                 <ScalarProperty Name="so_cmt" ColumnName="so_cmt" />
                 <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
                 <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="gpwModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nghe_nghiep">
+            <EntityTypeMapping TypeName="gpwModel.nghe_nghiep">
+              <MappingFragment StoreEntitySet="nghe_nghiep">
+                <ScalarProperty Name="ten_nghe_nghiep" ColumnName="ten_nghe_nghiep" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quan_he">
+            <EntityTypeMapping TypeName="gpwModel.quan_he">
+              <MappingFragment StoreEntitySet="quan_he">
+                <ScalarProperty Name="ten_quan_he" ColumnName="ten_quan_he" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
