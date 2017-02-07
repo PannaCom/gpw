@@ -16,7 +16,50 @@
         <div class="panel-body">
            
             <div id="gia_pha_0">
-
+                @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <div id="chart_div"></div>*@
+                <!--
+    We will create a family tree using just CSS(3)
+    The markup will be simple nested lists
+    -->
+                <div class="tree">
+                    <ul>
+                        <li>
+                            <a href="#">Parent</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Child</a>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Grand Child</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Child</a>
+                                    <ul>
+                                        <li><a href="#">Grand Child</a></li>
+                                        <li>
+                                            <a href="#">Grand Child</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Great Grand Child</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Great Grand Child</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Great Grand Child</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Grand Child</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
         </div>
@@ -39,6 +82,33 @@
         var json_gp = {
 
         };
+
+
+        //google.charts.load('current', { packages: ["orgchart"] });
+        //google.charts.setOnLoadCallback(drawChart);
+
+        //function drawChart() {
+        //    var data = new google.visualization.DataTable();
+        //    data.addColumn('string', 'Name');
+        //    data.addColumn('string', 'Manager');
+        //    data.addColumn('string', 'ToolTip');
+
+        //    // For each orgchart box, provide the name, manager, and tooltip to show.
+        //    data.addRows([
+        //      [{ v: 'Mike', f: 'Mike<div style="color:red; font-style:italic">President</div>' },
+        //       '', 'The President'],
+        //      [{ v: 'Jim', f: 'Jim<div style="color:red; font-style:italic">Vice President</div>' },
+        //       'Mike', 'VP'],
+        //      ['Alice', 'Mike', ''],
+        //      ['Bob', 'Jim', 'Bob Sponge'],
+        //      ['Carol', 'Bob', '']
+        //    ]);
+
+        //    // Create the chart.
+        //    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+        //    // Draw the chart, setting the allowHtml option to true for the tooltips.
+        //    chart.draw(data, { allowHtml: true });
+        //}
 
     </script>    
     
