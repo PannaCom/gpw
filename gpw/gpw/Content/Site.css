@@ -659,3 +659,7 @@ Thanks :)*/
 .sub_2:last-child {
         margin-right: 0px;
 }*/
+
+.noPadding {
+    padding: 0;padding-right: 10px;
+}
