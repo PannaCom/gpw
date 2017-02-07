@@ -53,10 +53,27 @@ a:link, a {
 
 }
 
+.sp-left-thumbnails.sp-has-pointer .sp-thumbnail {
+    position: absolute;
+    right: 18px;
+    padding: 21px 0;
+    background: #f5f5f5;
+}
+
+.sp-left-thumbnails.sp-has-pointer .sp-selected-thumbnail:before,
+.sp-left-thumbnails.sp-has-pointer .sp-selected-thumbnail:after {
+    border-left-color: #e5c98c;
+}
+
 body {
     padding-top: 0;
     padding-bottom: 20px;
     background: url(/images/bg_body_2.jpg) repeat;
+    font-family: 'Roboto', sans-serif!important;
+    font-size: 13px!important;
+    font-weight: 400!important;
+    line-height: 1.5!important;
+    color: #333;
 }
 
 #main {
@@ -432,7 +449,7 @@ textarea {
 
     #gia_pha_0 {
             background: url(/images/caygiaphamay_bg.jpg) center no-repeat;
-    height: 900px;
+    height: 600px;
     width: 100%;
     background-size: 100% 100%;
     }
@@ -441,7 +458,6 @@ textarea {
 
 .tree ul {
 	padding-top: 20px; position: relative;
-	
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -451,7 +467,7 @@ textarea {
 	float: left; text-align: center;
 	list-style-type: none;
 	position: relative;
-	padding: 20px 5px 0 5px;
+	padding: 20px 0px 0 0px;
 	
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
@@ -463,12 +479,12 @@ textarea {
 .tree li::before, .tree li::after{
 	content: '';
 	position: absolute; top: 0; right: 50%;
-	border-top: 1px solid #ccc;
+	border-top: 3px solid #ccc;
 	width: 50%; height: 20px;
 }
 .tree li::after{
 	right: auto; left: 50%;
-	border-left: 1px solid #ccc;
+	border-left: 3px solid #ccc;
 }
 
 /*We need to remove left-right connectors from elements without 
@@ -498,12 +514,20 @@ right connector from last child*/
 	-moz-border-radius: 5px 0 0 0;
 }
 
+.tree {
+        height: 100%;
+}
+
 /*Time to add downward connectors from parents*/
 .tree ul ul::before{
 	content: '';
 	position: absolute; top: 0; left: 50%;
-	border-left: 1px solid #ccc;
+	border-left: 3px solid #ccc;
 	width: 0; height: 20px;
+}
+
+.tree_11::before {
+    border-left-width: 0px!important;
 }
 
 .tree li a{
@@ -527,7 +551,7 @@ right connector from last child*/
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
 .tree li a:hover, .tree li a:hover+ul li a {
-	background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+	/*background: #c8e4f8;*/ color: #000; border: 1px solid #94a0b4;
 }
 /*Connector styles on hover*/
 .tree li a:hover+ul li::after, 
@@ -537,5 +561,100 @@ right connector from last child*/
 	border-color:  #94a0b4;
 }
 
+.tree_sub {
+        font-size: 11px!important;
+    width: 48px;
+    text-align: center;
+    padding: 5px!important;
+}
+
+.tree_sub strong{
+    display: block;
+    text-align: left;
+}
+
 /*Thats all. I hope you enjoyed it.
 Thanks :)*/
+
+
+.bg_ph {
+    background: url(/images/bg_gia_pha_2.png) no-repeat center;
+    background-size: cover;
+    padding: 62px 211px!important;
+    color: #fff!important;
+        border-width: 0px!important;
+    position: relative;
+}
+
+.bg_ph span {
+        position: absolute;
+    width: 100%;
+    top: 30px;
+    left: 0;
+}
+
+.tree_sub_0 {
+        text-transform: uppercase;
+    color: red!important;
+    background: yellow;
+    width: 200px;
+    height: 58px;
+    border: 2px solid red!important;
+    font-size: 17px!important;
+    font-weight: 600;
+}
+
+.tree_sub_1 {
+    text-transform: uppercase;
+    color: yellow!important;
+    background: red;
+    width: 65px;
+    height: 58px;
+    border: 2px solid red!important;
+    font-size: 11px!important;
+    font-weight: 600;
+}
+
+.tree_sub_2 {
+    text-transform: uppercase;
+    color: #333!important;
+    background: yellow;
+    width: 87px;
+    height: 58px;
+    border: 2px solid #333!important;
+    font-size: 10px!important;
+    font-weight: 600;
+    margin-right: 0px;
+}
+
+.tree_lv3:before {
+    left: 50%!important
+}
+
+.tree_sub_3 {
+    text-transform: uppercase;
+    color: #333!important;
+    background: #EE0F83;
+    width: 51px;
+    height: 63px;
+    border: 2px solid #333!important;
+    font-size: 10px!important;
+    font-weight: 600;
+    margin-right: 3px;
+}
+
+.s_tree {
+    border: 1px solid #000!important;
+    width: 2px!important;
+    padding: 0px 1px!important;
+    margin-left: -4px;
+    background: #000;
+}
+
+/*.sub_2 {
+        margin-right: 4px;
+}
+
+.sub_2:last-child {
+        margin-right: 0px;
+}*/

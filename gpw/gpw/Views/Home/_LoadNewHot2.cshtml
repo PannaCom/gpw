@@ -45,7 +45,18 @@
                         <div class="sp-thumbnail">
                             <div class="sp-thumbnail-text">
                                 @*<div class="sp-thumbnail-title">@if(@item.new_title.Length >= 59) {<text>@item.new_title.Substring(0, 59)</text> } else {<text>@item.new_title</text>}</div>*@
-                                <div class="sp-thumbnail-title">@item.new_title</div>
+                                <div class="sp-thumbnail-title">
+                                    @if (item.new_title.Length > 63)
+                                    {
+                                        <text>@item.new_title.Substring(0, 55)<span>...</span></text>
+                                    }
+                                    else
+                                    {
+                                        <text>@item.new_title</text>
+                                    }
+
+                                </div>
+
                             </div>
                         </div>
                     }

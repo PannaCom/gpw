@@ -2,10 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @RenderSection("meta", required: false)
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    @*<meta name="viewport" content="width=device-width, initial-scale=1">*@
     <title>@ViewBag.Title - Gia phả họ dương</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/owl.carousel.css" rel="stylesheet" />
     <link href="~/Content/sld/css/slider-pro.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
@@ -78,6 +80,7 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/owl.carousel.js"></script>
     <script src="~/Content/sld/js/jquery.sliderPro.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

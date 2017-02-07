@@ -3,6 +3,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .container {
+        width: 1170px !important;
+    }
+</style>
 
 <div class="gia_pha_main">
     <!--Our Agent Warp Start-->
@@ -14,49 +19,174 @@
         <!--Heading Wrap End-->
         <!--Agent List Wrap Start-->
         <div class="panel-body">
-           
+
             <div id="gia_pha_0">
                 @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <div id="chart_div"></div>*@
+                    <div id="chart_div"></div>*@
                 <!--
-    We will create a family tree using just CSS(3)
-    The markup will be simple nested lists
-    -->
+                We will create a family tree using just CSS(3)
+                The markup will be simple nested lists
+                -->
                 <div class="tree">
-                    <ul>
-                        <li>
-                            <a href="#">Parent</a>
-                            <ul>
-                                <li>
-                                    <a href="#">Child</a>
+                    <ul id="tree_main">
+                        <li style="width: 100%;
+    margin-left: -39px;
+    margin-top: 25px;">
+                            <a href="#" class="tree_sub bg_ph" style="font-size: 20px !important;">
+                                <span>Gia phả dòng họ Dương</span>
+                            </a>
+                            <ul class="tree_11">
+                                <li style="width: 1200px;margin: 0 auto;margin-left: -100px;">
+                                    <a href="#" class="tree_sub_0">
+                                        Cụ Dương Văn A
+                                    </a>
                                     <ul>
                                         <li>
-                                            <a href="#">Grand Child</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Child</a>
-                                    <ul>
-                                        <li><a href="#">Grand Child</a></li>
-                                        <li>
-                                            <a href="#">Grand Child</a>
+                                            <a href="#" class="tree_sub_1">
+                                                Bà Phạm Thị B
+                                            </a>
+                                            <a href="#" class="tree_sub_1">
+                                                Ông Dương Văn B
+                                            </a>
                                             <ul>
-                                                <li>
-                                                    <a href="#">Great Grand Child</a>
+                                                <li class="sub_2">
+                                                    <a href="#" class="tree_sub_2">
+                                                        Nguyễn Thị C1
+                                                    </a>
+                                                    <a href="#" class="tree_sub_2">
+                                                        Dương Văn B1
+                                                    </a>
+                                                    <ul class="tree_lv3">
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn B1.1
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn B1.2
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
                                                 </li>
-                                                <li>
-                                                    <a href="#">Great Grand Child</a>
+                                                <li class="sub_2">
+                                                    <a href="#" class="tree_sub_2">
+                                                        Nguyễn Thị B2
+                                                    </a>
+                                                    <a href="#" class="tree_sub_2">
+                                                        Dương Văn B2
+                                                    </a>
+                                                    <ul class="tree_lv3">
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn B2.1
+
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn B2.2
+
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
                                                 </li>
-                                                <li>
-                                                    <a href="#">Great Grand Child</a>
+                                                <li class="sub_2">
+                                                    <a href="#" class="tree_sub_2">
+                                                        Dương Văn B3
+                                                    </a>
+                                                    <ul class="tree_lv3">
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn B3.1
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">Grand Child</a></li>
+                                        <li>
+                                            <a href="#" class="tree_sub_1">
+                                                Bà Nguyễn Thị A
+                                            </a>
+                                            <a href="#" class="tree_sub_1">
+                                                Ông Dương Văn C
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="#" class="tree_sub_2">
+                                                        Nguyễn Thị C1
+                                                    </a>
+                                                    <a href="#" class="tree_sub_2">
+                                                        Dương Văn C1
+
+                                                    </a>
+                                                    <ul class="tree_lv3">
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn C1.1
+
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn C1.2
+
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="tree_sub_2">
+                                                        Dương Văn C2
+
+                                                    </a>
+                                                    <ul class="tree_lv3">
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn C2.1
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn 2.2
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="tree_sub_2">
+                                                        Dương Văn C3
+                                                    </a>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#" class="tree_sub_3">
+                                                                Dương Văn C3.1
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tree_sub_1">
+                                                Bà Phạm Thị D
+                                            </a>
+                                            <a href="#" class="tree_sub_1">
+                                                Ông Dương Văn D
+                                            </a>
+                                        </li>
                                     </ul>
+
                                 </li>
                             </ul>
+
                         </li>
                     </ul>
                 </div>
@@ -68,13 +198,13 @@
     <!--Our Agent Warp End-->
 </div>
 
-@section scripts { 
+@section scripts {
 
     <script>
 
         $(document).ready(function () {
             $('#gia_pha_0').map(function () {
-                    
+
             })
 
         })
@@ -110,6 +240,6 @@
         //    chart.draw(data, { allowHtml: true });
         //}
 
-    </script>    
-    
+    </script>
+
 }
