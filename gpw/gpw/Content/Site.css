@@ -13,6 +13,7 @@
         display: inline-flex;
         border-bottom: 1px dotted #cbcbcb;
         padding-bottom: 0;
+            width: 100%;
     }
 
     .item_new_top figure {
@@ -29,11 +30,26 @@
 
 }
 
+
+
+
+.item_new_top:hover {
+    text-decoration: none;
+    color: #333;
+}
+
+a:link, a {
+    color: #333;
+}
+
 @media(max-width: 512px) {
     #header {
         height: 100px;
     }
 
+    .NewsLoad a {
+        font-size: 14px;
+    }
 
 }
 
@@ -242,6 +258,7 @@ textarea {
          padding: 24px 10px 0;
     margin-top: 0;
     color: #fff;
+    font-size: 14px;
   }
 
   .kf_heading_1 a {color: #fff;}
@@ -360,13 +377,14 @@ textarea {
 .item_thanhvien h3 {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
 }
 
 .item_thanhvien {
         border-bottom: 1px solid #cbcbcb;
     margin-bottom: 5px;
+    font-size: 13px;
 }
 
 .border_w0 {
@@ -407,8 +425,9 @@ textarea {
     }
 
     .list_news {
-            padding-left: 20px;
-                height: 170px;
+    padding-left: 19px;
+    min-height: 170px;
+    line-height: 1.7em;
     }
 
     #gia_pha_0 {

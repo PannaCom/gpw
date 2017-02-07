@@ -119,19 +119,19 @@ namespace gpw.Controllers
 
         public ActionResult LoadNewInCat(int cat_id)
         {
-            var model = db.news.Where(x => x.cat_id == cat_id).OrderByDescending(x => x.id).Select(x => x).ToList().Take(8);
+            var model = db.news.Where(x => x.cat_id == cat_id && x.isHot == 0).OrderByDescending(x => x.id).Select(x => x).ToList().Take(8);
             return PartialView("_LoadNewInCat", model.ToList());
         }
 
         public ActionResult LoadNewInCat2(int cat_id)
         {
-            var model = db.news.Where(x => x.cat_id == cat_id).OrderByDescending(x => x.id).Select(x => x).ToList().Take(8);
+            var model = db.news.Where(x => x.cat_id == cat_id && x.isHot == 0).OrderByDescending(x => x.id).Select(x => x).ToList().Skip(1).Take(8);
             return PartialView("_LoadNewInCat2", model.ToList());
         }
 
         public ActionResult LoadNewInCat_top(int cat_id)
         {
-            var model = db.news.Where(x => x.cat_id == cat_id).OrderByDescending(x => x.id).Select(x => x).First();
+            var model = db.news.Where(x => x.cat_id == cat_id && x.isHot == 0).OrderByDescending(x => x.id).Select(x => x).First();
             return PartialView("_LoadNewInCat_top", model);
         }
 

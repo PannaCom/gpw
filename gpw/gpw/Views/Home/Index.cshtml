@@ -41,7 +41,7 @@
                 <div class="search-bar">
                     <form action="/Home/Search" method="GET" role="form" id="form_search">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Nhập từ khóa tìm kiếm">
+                            <input style="max-width: 100%;" type="text" class="form-control" name="keyword" id="keyword" placeholder="Nhập từ khóa tìm kiếm">
                         </div>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                     </form>
@@ -156,15 +156,15 @@
 
         $(document).ready(function ($) {
             $('#example5').sliderPro({
-                width: 545,
-                height: 467,
+                width: 550,
+                height: 445,
                 orientation: 'vertical',
                 loop: false,
                 arrows: true,
                 buttons: false,
                 thumbnailsPosition: 'left',
                 thumbnailPointer: true,
-                thumbnailWidth: 200,
+                thumbnailWidth: 235,
                 breakpoints: {
                     800: {
                         thumbnailsPosition: 'bottom',
