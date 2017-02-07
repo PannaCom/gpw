@@ -448,11 +448,12 @@ textarea {
     }
 
     #gia_pha_0 {
-            background: url(/images/caygiaphamay_bg.jpg) center no-repeat;
+    background: url(/images/caygiaphamay_bg.jpg) center no-repeat;
     height: 600px;
     width: 100%;
-    background-size: 100% 100%;
-    }
+    background-size: 102% 102%;
+}
+    
 
     /*Now the CSS*/
 
