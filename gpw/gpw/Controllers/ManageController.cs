@@ -57,30 +57,30 @@ namespace gpw.Controllers
 
         //
         // GET: /Manage/Index
-        public ActionResult Index()
-        {
-            //ViewBag.StatusMessage =
-            //    message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-            //    : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-            //    : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-            //    : message == ManageMessageId.Error ? "An error has occurred."
-            //    : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-            //    : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-            //    : "";
+        //public ActionResult Index()
+        //{
+        //    //ViewBag.StatusMessage =
+        //    //    message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+        //    //    : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+        //    //    : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+        //    //    : message == ManageMessageId.Error ? "An error has occurred."
+        //    //    : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+        //    //    : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+        //    //    : "";
 
-            var userId = User.Identity.GetUserId();
-            var userInfo = db.thong_tin_user.Where(x => x.user_id == userId).FirstOrDefault();
+        //    var userId = User.Identity.GetUserId();
+        //    var userInfo = db.thong_tin_user.Where(x => x.user_id == userId).FirstOrDefault();
 
-            //var model = new IndexViewModel
-            //{
-            //    HasPassword = HasPassword(),
-            //    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-            //    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-            //    Logins = await UserManager.GetLoginsAsync(userId),
-            //    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            //};
-            return View(userInfo);
-        }
+        //    //var model = new IndexViewModel
+        //    //{
+        //    //    HasPassword = HasPassword(),
+        //    //    PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+        //    //    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+        //    //    Logins = await UserManager.GetLoginsAsync(userId),
+        //    //    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+        //    //};
+        //    return View(userInfo);
+        //}
 
         [AllowAnonymous]
         public string getHocVan(string keyword)
@@ -98,47 +98,47 @@ namespace gpw.Controllers
             return JsonConvert.SerializeObject(p);
         }
 
-        [HttpPost, ValidateInput(false)]
-        [ValidateAntiForgeryToken]
-        public ActionResult CapNhatThongTin(thong_tin_user model, string ngay_sinh2)
-        {
-            if (!ModelState.IsValid)
-            {
-                TempData["error"] = "Vui lòng kiểm tra lại các trường";
-                return RedirectToAction("Index");
-            }
-            var userId = User.Identity.GetUserId();
+        //[HttpPost, ValidateInput(false)]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult CapNhatThongTin(thong_tin_user model, string ngay_sinh2)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        TempData["error"] = "Vui lòng kiểm tra lại các trường";
+        //        return RedirectToAction("Index");
+        //    }
+        //    var userId = User.Identity.GetUserId();
 
-            //string sql = "update thong_tin_user set ho_ten = N'" + model.ho_ten + "', biet_danh = N'" + model.biet_danh + "', gioi_tinh = N'" + model.gioi_tinh + "', hoc_van = N'" + model.hoc_van + "', dia_chi = N'" + model.dia_chi + "', ngay_sinh = '" + model.ngay_sinh.ToString() + "', nghe_nghiep = N'" + model.nghe_nghiep + "', trang_thai = '1', quyen_han = '" + model.quyen_han + "', ngay_tao = '" + DateTime.Now + "', hinh_anh = '" + model.hinh_anh + "', cq_ctac = N'" + model.cq_ctac + "', lon = '" + model.lon + "', lat = '" + model.lat + "', so_cmt = '"+ model.so_cmt +"' where user_id = '" + userId + "'";
+        //    //string sql = "update thong_tin_user set ho_ten = N'" + model.ho_ten + "', biet_danh = N'" + model.biet_danh + "', gioi_tinh = N'" + model.gioi_tinh + "', hoc_van = N'" + model.hoc_van + "', dia_chi = N'" + model.dia_chi + "', ngay_sinh = '" + model.ngay_sinh.ToString() + "', nghe_nghiep = N'" + model.nghe_nghiep + "', trang_thai = '1', quyen_han = '" + model.quyen_han + "', ngay_tao = '" + DateTime.Now + "', hinh_anh = '" + model.hinh_anh + "', cq_ctac = N'" + model.cq_ctac + "', lon = '" + model.lon + "', lat = '" + model.lat + "', so_cmt = '"+ model.so_cmt +"' where user_id = '" + userId + "'";
 
-            //var updateInfo = db.Database.ExecuteSqlCommand(sql);
-            var userInfo = db.thong_tin_user.Where(x => x.user_id == userId).FirstOrDefault();
-            userInfo.ho_ten = model.ho_ten ?? null;
-            userInfo.biet_danh = model.biet_danh ?? null;
-            userInfo.cq_ctac = model.cq_ctac ?? null;
-            userInfo.dia_chi = model.dia_chi ?? null;
-            userInfo.gioi_tinh = model.gioi_tinh ?? null;
-            userInfo.hinh_anh = model.hinh_anh ?? null;
-            userInfo.hoc_van = model.hoc_van ?? null;
-            userInfo.lat = model.lat ?? null;
-            userInfo.lon = model.lon ?? null;
-            string dateTime = ngay_sinh2 != null ? ngay_sinh2 : null;
-            DateTime? dt = new DateTime();
-            if (dateTime != null)
-            {
-                dt = Convert.ToDateTime(dateTime);
-            }
-            userInfo.ngay_sinh = ngay_sinh2 != null ? dt : userInfo.ngay_sinh;
-            userInfo.ngay_tao = DateTime.Now;
-            userInfo.nghe_nghiep = model.nghe_nghiep ?? null;
-            userInfo.quyen_han = model.quyen_han ?? null;
-            userInfo.so_cmt = model.so_cmt ?? null;
-            userInfo.trang_thai = model.trang_thai ?? null;
-            db.Entry<thong_tin_user>(userInfo).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            TempData["update"] = "Cập nhật thành công";
-            return RedirectToAction("Index");
-        }
+        //    //var updateInfo = db.Database.ExecuteSqlCommand(sql);
+        //    var userInfo = db.thong_tin_user.Where(x => x.user_id == userId).FirstOrDefault();
+        //    userInfo.ho_ten = model.ho_ten ?? null;
+        //    userInfo.biet_danh = model.biet_danh ?? null;
+        //    userInfo.cq_ctac = model.cq_ctac ?? null;
+        //    userInfo.dia_chi = model.dia_chi ?? null;
+        //    userInfo.gioi_tinh = model.gioi_tinh ?? null;
+        //    userInfo.hinh_anh = model.hinh_anh ?? null;
+        //    userInfo.hoc_van = model.hoc_van ?? null;
+        //    userInfo.lat = model.lat ?? null;
+        //    userInfo.lon = model.lon ?? null;
+        //    string dateTime = ngay_sinh2 != null ? ngay_sinh2 : null;
+        //    DateTime? dt = new DateTime();
+        //    if (dateTime != null)
+        //    {
+        //        dt = Convert.ToDateTime(dateTime);
+        //    }
+        //    userInfo.ngay_sinh = ngay_sinh2 != null ? dt : userInfo.ngay_sinh;
+        //    userInfo.ngay_tao = DateTime.Now;
+        //    userInfo.nghe_nghiep = model.nghe_nghiep ?? null;
+        //    userInfo.quyen_han = model.quyen_han ?? null;
+        //    userInfo.so_cmt = model.so_cmt ?? null;
+        //    userInfo.trang_thai = model.trang_thai ?? null;
+        //    db.Entry<thong_tin_user>(userInfo).State = System.Data.Entity.EntityState.Modified;
+        //    db.SaveChanges();
+        //    TempData["update"] = "Cập nhật thành công";
+        //    return RedirectToAction("Index");
+        //}
 
 
 

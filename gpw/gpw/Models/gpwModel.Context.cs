@@ -29,9 +29,10 @@ namespace gpw.Models
         public virtual DbSet<friend> friends { get; set; }
         public virtual DbSet<hoc_van> hoc_van { get; set; }
         public virtual DbSet<news> news { get; set; }
-        public virtual DbSet<thong_tin_user> thong_tin_user { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<nghe_nghiep> nghe_nghiep { get; set; }
         public virtual DbSet<quan_he> quan_he { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<thanh_vien> thanh_vien { get; set; }
+        public virtual DbSet<quan_he_thanh_vien> quan_he_thanh_vien { get; set; }
     }
 }

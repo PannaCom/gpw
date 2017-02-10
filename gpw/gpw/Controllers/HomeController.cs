@@ -55,12 +55,12 @@ namespace gpw.Controllers
             return View(data.ToPagedList(pageNumber, pageSize));
         }
 
-        [Authorize]
-        public ActionResult Profile(string id)        
-        {
-            var profile = db.thong_tin_user.Where(x => x.user_id == id).Select(x=>x).FirstOrDefault();
-            return View(profile);
-        }
+        //[Authorize]
+        //public ActionResult Profile(string id)        
+        //{
+        //    var profile = db.thong_tin_user.Where(x => x.user_id == id).Select(x=>x).FirstOrDefault();
+        //    return View(profile);
+        //}
 
         public ActionResult addfriend(string id)
         {
@@ -135,20 +135,14 @@ namespace gpw.Controllers
             return PartialView("_LoadNewInCat_top", model);
         }
 
-        public ActionResult DsUser()
-        {
-            var model = db.thong_tin_user.Select(x => x).ToList();
-            return PartialView("_DsUser", model);
-        }
-
-        
+        //public ActionResult DsUser()
+        //{
+        //    var model = db.thong_tin_user.Select(x => x).ToList();
+        //    return PartialView("_DsUser", model);
+        //}
 
         public ActionResult GiaPha()
         {
-            
-
-
-
             return View();
         }
 

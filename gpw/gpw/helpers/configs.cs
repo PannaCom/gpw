@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -42,6 +45,80 @@ namespace gpw.helpers
                 sw.WriteLine(DateTime.Now.ToString() + ": " + log);
                 sw.Close();
             }
+        }
+
+        public static void setCookie(string field, string value)
+        {
+            HttpCookie MyCookie = new HttpCookie(field);
+            MyCookie.Value = value;
+            MyCookie.Expires = DateTime.Now.AddDays(365);
+            HttpContext.Current.Response.Cookies.Add(MyCookie);
+            //Response.Cookies.Add(MyCookie);   
+
+        }
+        public static string getCookie(string v)
+        {
+            try
+            {
+                return HttpContext.Current.Request.Cookies[v].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+
+        public static void RemoveCookie(string v)
+        {
+            if (HttpContext.Current.Request.Cookies[v] != null)
+            {
+                var c = new HttpCookie(v);
+                c.Expires = DateTime.Now.AddDays(-1);
+                HttpContext.Current.Response.Cookies.Add(c);
+            }
+        }
+
+        private const string EncryptionKey = "nguyenvannam2922";
+        public static string Encrypt(string clearText)
+        {
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
+        }
+
+        public static string Decrypt(string cipherText)
+        {
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
         }
 
     }

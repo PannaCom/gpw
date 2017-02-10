@@ -148,4 +148,105 @@ namespace gpw.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public partial class thanh_vien_model
+    {
+        public long id { get; set; }
+        [Display(Name = "Họ tên")]
+        [Required(ErrorMessage = "Vui lòng nhập họ tên.")]        
+        public string ho_ten { get; set; }
+
+        [Display(Name = "Địa chỉ")]
+        [Required(ErrorMessage = "Vui lòng nhập địa chỉ.")]   
+        public string dia_chi { get; set; }
+
+        [Display(Name = "Số chứng minh thư")]
+        public string so_cmt { get; set; }
+
+        [Display(Name = "Nghề nghiệp")]
+        [Required(ErrorMessage = "Vui lòng nhập nghề nghiệp.")]   
+        public string nghe_nghiep { get; set; }
+
+        [Display(Name = "Ảnh đại diện")]
+        [Required(ErrorMessage = "Vui lòng nhập ảnh đại diện.")]   
+        public string hinh_anh { get; set; }
+
+        [Display(Name = "Tên thường gọi")]
+        [Required(ErrorMessage = "Vui lòng nhập tên thường gọi.")]   
+        public string biet_danh { get; set; }
+
+        [Display(Name = "Học vấn")]
+        [Required(ErrorMessage = "Vui lòng nhập học vấn.")]
+        public string hoc_van { get; set; }
+
+        [Display(Name = "Trình độ")]
+        [Required(ErrorMessage = "Vui lòng nhập trình độ.")]
+        public string trinh_do { get; set; }
+
+        [Display(Name = "Giới tính")]
+        [Required(ErrorMessage = "Vui lòng nhập giới tính.")]
+        public string gioi_tinh { get; set; }
+
+        [Display(Name = "Ngày sinh")]
+        [Required(ErrorMessage = "Vui lòng nhập ngày sinh.")]
+        public string ngay_sinh { get; set; }
+        public Nullable<double> lon { get; set; }
+        public Nullable<double> lat { get; set; }
+
+        [Display(Name = "Cơ quan công tác")]
+        [Required(ErrorMessage = "Vui lòng nhập cơ quan công tác.")]
+        public string cq_ctac { get; set; }
+
+        [Required(ErrorMessage="Vui lòng nhập email.")]
+        [EmailAddress(ErrorMessage="Địa chỉ e-mail không đúng.")]
+        [Display(Name = "Email")]
+        public string email { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu.")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Mật khẩu thành viên")]
+        public string pass { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng xác nhận lại mật khẩu.")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Xác nhận mật khẩu")]
+        [Compare("pass", ErrorMessage = "Mật khẩu xác nhận không khớp.")]
+        public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Số điện thoại")]
+        [Required(ErrorMessage = "Vui lòng nhập số điện thoại.")]
+        public string so_dien_thoai { get; set; }
+    }
+
+    public class thanh_vien_login_model
+    {
+        [Required(ErrorMessage="Vui lòng nhập địa chỉ email.")]
+        [Display(Name = "Địa chỉ email")]
+        [EmailAddress(ErrorMessage = "Vui lòng nhập chính xác địa chỉ email của thành viên.")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage="Vui lòng nhập mật khẩu.")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Mật khẩu")]
+        public string Password { get; set; }
+        
+    }
+
+    public class quanhethanhvienModel
+    {
+        public long id { get; set; }
+        [Display(Name = "Tên thành viên")]
+        [Required(ErrorMessage = "Vui lòng nhập tên thành viên.")]
+        public string ten_thanh_vien { get; set; }
+
+        public string ten_quan_he { get; set; }
+        public Nullable<long> thanh_vien_id { get; set; }
+
+        [Display(Name = "Quê quán")]
+        [Required(ErrorMessage = "Vui lòng nhập quê quán.")]
+        public string que_quan { get; set; }
+
+        public Nullable<double> qq_lon { get; set; }
+        public Nullable<double> qq_lat { get; set; }
+    }
 }
