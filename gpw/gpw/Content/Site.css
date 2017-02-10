@@ -697,8 +697,8 @@ Thanks :)*/
 
 @media screen and (min-width: 992px) {
     .logo {
-            top: 65px;
-    left: 53px;
+                top: 65px;
+    left: 20px;
     }
 }
 
@@ -718,6 +718,7 @@ Thanks :)*/
         width: 290px;
         height: 290px;
             margin-top: 12px;
+                margin-left: 7px;
     }
 }
 

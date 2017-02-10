@@ -83,7 +83,14 @@
                                     foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td><a href="/ThanhVien/Details/@item.thanh_vien_qh_id">@item.ten_thanh_vien</a></td>
+                                            @if (item.thanh_vien_qh_id != null)
+                                            {
+                                                <td><a href="/ThanhVien/Details/@item.thanh_vien_qh_id">@item.ten_thanh_vien</a></td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.ten_thanh_vien</td>
+                                            }
                                             <td>@item.ten_quan_he</td>
                                             <td>@item.que_quan</td>
                                         </tr>
@@ -168,11 +175,11 @@
                 document.getElementById("que_quan").focus();
                 return false;
             }
-            if (document.getElementById("thanh_vien_qh_id").value === "") {
-                alert("Vui lòng chọn lại tên thành viên.");
-                document.getElementById("ten_thanh_vien").focus();
-                return false;
-            }
+            //if (document.getElementById("thanh_vien_qh_id").value === "") {
+            //    alert("Vui lòng chọn lại tên thành viên.");
+            //    document.getElementById("ten_thanh_vien").focus();
+            //    return false;
+            //}
             $.ajax({
                 type: "POST",
                 url: url,

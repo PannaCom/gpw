@@ -172,7 +172,7 @@ namespace gpw.Models
         public string hinh_anh { get; set; }
 
         [Display(Name = "Tên thường gọi")]
-        [Required(ErrorMessage = "Vui lòng nhập tên thường gọi.")]   
+        //[Required(ErrorMessage = "Vui lòng nhập tên thường gọi.")]   
         public string biet_danh { get; set; }
 
         [Display(Name = "Học vấn")]
