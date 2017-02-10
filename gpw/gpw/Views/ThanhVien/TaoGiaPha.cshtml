@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section meta {
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+}
+
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
@@ -162,6 +166,11 @@
             if (document.getElementById("que_quan").value === "") {
                 alert("Vui lòng nhập vào quê quán.");
                 document.getElementById("que_quan").focus();
+                return false;
+            }
+            if (document.getElementById("thanh_vien_qh_id").value === "") {
+                alert("Vui lòng chọn lại tên thành viên.");
+                document.getElementById("ten_thanh_vien").focus();
                 return false;
             }
             $.ajax({
