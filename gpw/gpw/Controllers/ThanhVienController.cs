@@ -165,7 +165,7 @@ namespace gpw.Controllers
                 hoc_van = thanh_vien.hoc_van,
                 lat = thanh_vien.lat,
                 lon = thanh_vien.lon,
-                ngay_sinh = string.Format("{0:dd/MM/yyyy}", thanh_vien.ngay_sinh),
+                ngay_sinh = string.Format("{0:MM/dd/yyyy}", thanh_vien.ngay_sinh),
                 nghe_nghiep = thanh_vien.nghe_nghiep,
                 so_cmt = thanh_vien.so_cmt,
                 so_dien_thoai = thanh_vien.so_dien_thoai,
