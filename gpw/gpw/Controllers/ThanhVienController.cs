@@ -328,9 +328,9 @@ namespace gpw.Controllers
                     _newmodel.qq_lat = model.qq_lat ?? null;
                     _newmodel.thanh_vien_qh_id = model.thanh_vien_qh_id ?? null;
                     db.quan_he_thanh_vien.Add(_newmodel);
-                    
-                    data = "<tr><td>" + _newmodel.ten_thanh_vien + "</td><td>" + _newmodel.ten_quan_he + "</td><td>" + _newmodel.que_quan + "</td></tr>";
                     db.SaveChanges();
+                    data = "<tr id=\"t_vien_" + _newmodel.id + "\"><td>" + _newmodel.ten_thanh_vien + "</td><td>" + _newmodel.ten_quan_he + "</td><td>" + _newmodel.que_quan + "</td><td><span class=\"btn btn-danger\" onclick=\"xoaquanhe(" + _newmodel.id + ");\">Xóa quan hệ</span></td></tr>";
+                    
                 }
                 catch (Exception ex)
                 {
@@ -476,6 +476,29 @@ namespace gpw.Controllers
             //    }
             //}
             return PartialView("_LoadThanhVienCungQH", ds);
+        }
+
+        [HttpPost]
+        public ActionResult xoaquanhe(long? id)
+        {
+            string data = "";
+            try
+            {
+                quan_he_thanh_vien xoaquanhe = db.quan_he_thanh_vien.Find(id);
+                if (xoaquanhe != null)
+                {
+                    db.quan_he_thanh_vien.Remove(xoaquanhe);
+                    db.SaveChanges();
+                    data = "1";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                configs.SaveTolog(ex.ToString());
+            }
+
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
     }
