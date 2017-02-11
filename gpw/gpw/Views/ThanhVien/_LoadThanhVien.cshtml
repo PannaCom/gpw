@@ -9,7 +9,7 @@
         @foreach (var item in Model)
         {
             <li>
-                @item.ten_quan_he -
+                @item.ten_quan_he - 
                 @if (item.thanh_vien_qh_id != null)
                 {
                     <a href="/ThanhVien/Details/@item.thanh_vien_qh_id">@item.ten_thanh_vien</a>
@@ -17,9 +17,9 @@
                 else
                 {
                     <a href="#">@item.ten_thanh_vien</a>
-                }                
+                }
                 - quê quán: @item.que_quan<span>.</span>
-                @{Html.RenderAction("LoadThanhVienCungQH", "ThanhVien", new { tenthanhvien = @item.ten_thanh_vien });}
+                @{Html.RenderAction("LoadThanhVienCungQH", "ThanhVien", new { tqh = @item.ten_quan_he, ttv = @item.ten_thanh_vien, id = item.thanh_vien_id });}
             </li>
         }
     </ul>

@@ -10,16 +10,14 @@
                 @foreach (var item in Model)
                 {
                     <li style="display: inline-block;">
-                        
                         @if (item.thanh_vien_qh_id != null)
                         {
-                            <a href="/ThanhVien/Details/@item.thanh_vien_id">@item.ten_thanh_vien</a>
+                            <a href="/ThanhVien/Details/@item.thanh_vien_qh_id">@item.ten_thanh_vien</a><span>, </span>
                         }
                         else
                         {
-                            <a href="#">@item.ten_thanh_vien</a>
+                            <a href="#">@item.ten_thanh_vien</a><span>, </span>
                         }
-                        <span>,</span>
                     </li>
                 }
             </ul>

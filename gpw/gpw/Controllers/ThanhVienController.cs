@@ -463,9 +463,18 @@ namespace gpw.Controllers
             return PartialView("_LoadThanhVien", quan_he);
         }
 
-        public ActionResult LoadThanhVienCungQH(string tenthanhvien)
+        public ActionResult LoadThanhVienCungQH(string tqh, string ttv, long? id)
         {
-            var ds = db.quan_he_thanh_vien.Where(x => x.ten_thanh_vien != tenthanhvien).Select(x => x).ToList();
+            var ds = db.quan_he_thanh_vien.Where(x => x.ten_quan_he == tqh && x.ten_thanh_vien != ttv && x.thanh_vien_id == id).Select(x => x).ToList();
+            //var ds2 = new List<thanh_vien>();
+            //foreach (var item in ds)
+            //{
+            //    var data = db.thanh_vien.Find(item);
+            //    if (data != null)
+            //    {
+            //        ds2.Add(data);
+            //    }
+            //}
             return PartialView("_LoadThanhVienCungQH", ds);
         }
 
