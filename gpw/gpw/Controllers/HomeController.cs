@@ -101,8 +101,17 @@ namespace gpw.Controllers
 
         public ActionResult LoadNewHot2()
         {
-            var model = db.news.Where(x => x.isHot == 1).OrderByDescending(x => x.id).Select(x => x).Take(10).ToList();
+            var model = (from s in db.news where s.isHot == 1 orderby s.id descending select s).Take(3).ToList();
+            //var model = db.news.Where(x => x.isHot == 1).OrderByDescending(x => x.id).Select(x => x).Take(7).ToList();
             return PartialView("_LoadNewHot2", model);
+        }
+
+        public ActionResult LoadNewTopHot2()
+        {
+            var model = (from s in db.news where s.isHot == 1 orderby s.id descending select s).Skip(3).Take(3).ToList();
+
+            //var model = db.news.Where(x => x.isHot == 1).OrderByDescending(x => x.id).Select(x => x).Skip(7).Take(3).ToList();
+            return PartialView("_LoadNewTopHot2", model);
         }
 
         public ActionResult LoadNewCat()

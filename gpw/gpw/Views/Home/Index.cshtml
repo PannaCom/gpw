@@ -5,7 +5,7 @@
 @section meta {
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 }
-
+<link href="~/Content/sld/flexslider.css" rel="stylesheet" />
 @*<div class=" row">
         <div class="col-md-12">
             @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { @class = "form-inline", role = "form", @id = "form_search", style = "float:right;" }))
@@ -23,6 +23,8 @@
 <div class="row">
     <div class="col-md-8">
         @{Html.RenderAction("LoadNewHot2");}
+
+        @{Html.RenderAction("LoadNewTopHot2");}
     </div>
     <div class="col-md-4">
         @*<img src="~/images/caudoiphai.png" class="img-responsive" style="display: inline-block;" />
@@ -136,7 +138,7 @@
 </div>
 
 @section scripts {
-
+<script src="~/Content/sld/jquery.flexslider-min.js"></script>
     <script>
         if ($('.kf_agent_slider').length) {
             var owl = $(".kf_agent_slider");
@@ -181,6 +183,15 @@
                         thumbnailHeight: 50
                     }
                 }
+            });
+        });
+
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                directionNav: true,
+                draggable: false,
             });
         });
 
