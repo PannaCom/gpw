@@ -34,5 +34,6 @@ namespace gpw.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<thanh_vien> thanh_vien { get; set; }
         public virtual DbSet<quan_he_thanh_vien> quan_he_thanh_vien { get; set; }
+        public virtual DbSet<gia_pha> gia_pha { get; set; }
     }
 }
