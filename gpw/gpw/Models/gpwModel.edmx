@@ -58,6 +58,7 @@
           <Property Name="isHot" Type="tinyint" />
           <Property Name="ngay_tao" Type="datetime" />
           <Property Name="new_des" Type="nvarchar" MaxLength="505" />
+          <Property Name="ngay_sua" Type="datetime" />
         </EntityType>
         <EntityType Name="nghe_nghiep">
           <Key>
@@ -150,13 +151,13 @@
           <EntitySet Name="cats" EntityType="gpwModel.cat" />
           <EntitySet Name="friends" EntityType="gpwModel.friend" />
           <EntitySet Name="hoc_van" EntityType="gpwModel.hoc_van" />
-          <EntitySet Name="news" EntityType="gpwModel.news" />
           <EntitySet Name="nghe_nghiep" EntityType="gpwModel.nghe_nghiep" />
           <EntitySet Name="quan_he" EntityType="gpwModel.quan_he" />
           <EntitySet Name="Users" EntityType="gpwModel.User" />
           <EntitySet Name="thanh_vien" EntityType="gpwModel.thanh_vien" />
           <EntitySet Name="quan_he_thanh_vien" EntityType="gpwModel.quan_he_thanh_vien" />
           <EntitySet Name="gia_pha" EntityType="gpwModel.gia_pha" />
+          <EntitySet Name="news" EntityType="gpwModel.news" />
         </EntityContainer>
         <EntityType Name="cat">
           <Key>
@@ -182,23 +183,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ten_truong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="news">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="new_title" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="new_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="new_flug" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
-          <Property Name="new_img" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="cat_id" Type="Int32" />
-          <Property Name="user_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="quyen_hang" Type="Int32" />
-          <Property Name="trang_thai" Type="Int32" />
-          <Property Name="isHot" Type="Byte" />
-          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
-          <Property Name="new_des" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="nghe_nghiep">
           <Key>
@@ -283,6 +267,24 @@
           <Property Name="tv_id_2" Type="Int64" />
           <Property Name="q_h_id" Type="Int32" />
         </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="new_title" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="new_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="new_flug" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="new_img" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="cat_id" Type="Int32" />
+          <Property Name="user_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="quyen_hang" Type="Int32" />
+          <Property Name="trang_thai" Type="Int32" />
+          <Property Name="isHot" Type="Byte" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <Property Name="new_des" Type="String" MaxLength="505" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_sua" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -313,24 +315,6 @@
             <EntityTypeMapping TypeName="gpwModel.hoc_van">
               <MappingFragment StoreEntitySet="hoc_van">
                 <ScalarProperty Name="ten_truong" ColumnName="ten_truong" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="news">
-            <EntityTypeMapping TypeName="gpwModel.news">
-              <MappingFragment StoreEntitySet="news">
-                <ScalarProperty Name="new_des" ColumnName="new_des" />
-                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
-                <ScalarProperty Name="isHot" ColumnName="isHot" />
-                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
-                <ScalarProperty Name="quyen_hang" ColumnName="quyen_hang" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
-                <ScalarProperty Name="new_img" ColumnName="new_img" />
-                <ScalarProperty Name="new_flug" ColumnName="new_flug" />
-                <ScalarProperty Name="new_content" ColumnName="new_content" />
-                <ScalarProperty Name="new_title" ColumnName="new_title" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -420,6 +404,25 @@
                 <ScalarProperty Name="name2" ColumnName="name2" />
                 <ScalarProperty Name="name1" ColumnName="name1" />
                 <ScalarProperty Name="thanh_vien_id" ColumnName="thanh_vien_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="gpwModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="ngay_sua" ColumnName="ngay_sua" />
+                <ScalarProperty Name="new_des" ColumnName="new_des" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="isHot" ColumnName="isHot" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+                <ScalarProperty Name="quyen_hang" ColumnName="quyen_hang" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="new_img" ColumnName="new_img" />
+                <ScalarProperty Name="new_flug" ColumnName="new_flug" />
+                <ScalarProperty Name="new_content" ColumnName="new_content" />
+                <ScalarProperty Name="new_title" ColumnName="new_title" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

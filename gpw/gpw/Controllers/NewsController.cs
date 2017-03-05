@@ -212,7 +212,7 @@ namespace gpw.Controllers
             baiviet.isHot = news.isHot ?? null;
             baiviet.new_content = news.new_content ?? null;
             baiviet.new_img = news.new_img ?? null;
-            baiviet.ngay_tao = DateTime.Now;
+            baiviet.ngay_sua = DateTime.Now;
             baiviet.quyen_hang = news.quyen_hang ?? null;
             baiviet.trang_thai = news.trang_thai ?? null;
             baiviet.new_des = news.new_des ?? null;
@@ -329,7 +329,7 @@ namespace gpw.Controllers
             int pageNumber = (pg ?? 1);
             ViewBag.pg = pg;
 
-            var data = (from q in db.news where q.cat_id == cat.id orderby q.ngay_tao descending select q);
+            var data = (from q in db.news where q.cat_id == cat.id orderby q.id descending select q);
             if (data == null)
             {
                 return View(data);
